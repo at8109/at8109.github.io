@@ -7,16 +7,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
-    <!-- Chosen Palette: Calm Neutrals (Off-white background, slate gray text, muted teal accents) -->
-    <!-- Application Structure Plan: The website is structured as a single-page portfolio with a sticky navigation bar allowing users to jump between sections (Home, About, Skills, Experience, Projects, Certifications, Contact). The Experience section includes an interactive timeline chart for a high-level overview, with detailed job cards revealed via tabs or timeline clicks. The Projects section uses a grid layout for individual project cards. This structure provides a clear, logical flow for presenting professional information, enabling both quick scanning and deep dives into specific areas of interest, chosen to mirror common developer portfolio best practices for usability and comprehensive display of qualifications. -->
-    <!-- Visualization & Content Choices: 
-        Report Info: Overall professional summary, contact. -> Goal: Introduce and provide quick contact. -> Viz/Presentation Method: Hero section, About section, Contact section. -> Interaction: Navigation links, direct contact links. -> Justification: Standard portfolio elements for immediate impact and accessibility. -> Library/Method: HTML/CSS/Tailwind.
-        Report Info: Skills (languages, frameworks, tools). -> Goal: Showcase technical breadth. -> Viz/Presentation Method: Categorized lists with visual proficiency indicators. -> Interaction: None. -> Justification: Clear and concise presentation of technical capabilities with an added visual dimension for quick understanding. -> Library/Method: HTML/CSS/Tailwind.
-        Report Info: Employment history (dates, roles, companies). -> Goal: Show career progression. -> Viz/Presentation Method: Interactive horizontal bar chart (timeline) and detailed job cards. -> Interaction: Clicking timeline segments or tabs reveals specific job details. -> Justification: Provides both a visual overview and granular details, making career path easy to understand. -> Library/Method: Chart.js (Canvas) for timeline, HTML/CSS/Tailwind for job cards.
-        Report Info: Project descriptions. -> Goal: Detail technical accomplishments. -> Viz/Presentation Method: Enhanced project cards with descriptions and subtle hover effects. -> Interaction: Hover effects. -> Justification: Highlights specific achievements and technical contributions in a readable and engaging format. -> Library/Method: HTML/CSS/Tailwind.
-        Report Info: Certifications and coding profiles. -> Goal: Validate expertise and provide external links. -> Viz/Presentation Method: Lists with hyperlinks. -> Interaction: Clickable links. -> Justification: Offers verifiable credentials and further exploration of coding work. -> Library/Method: HTML/CSS/Tailwind.
-    -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -58,7 +48,6 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        /* Typing effect for Hero section */
         .typing-text::after {
             content: '|';
             animation: blink-caret .75s step-end infinite;
@@ -67,7 +56,6 @@
             from, to { border-color: transparent }
             50% { border-color: currentColor; }
         }
-        /* New Skill Tag styles */
         .skill-tag {
             transition: all 0.3s ease;
         }
@@ -75,8 +63,6 @@
             transform: translateY(-3px);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
-
-        /* === NEW FANCY HERO STYLES === */
         @keyframes gradient-animation {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -122,17 +108,14 @@
     </header>
 
     <main class="container mx-auto p-4 md:p-8">
-        <!-- === FANCY HERO SECTION UPDATED === -->
         <section id="hero" class="min-h-screen flex items-center justify-center animated-gradient rounded-2xl shadow-xl mb-16 overflow-hidden">
             <div class="container mx-auto px-6 py-16">
                 <div class="grid lg:grid-cols-2 gap-12 items-center">
-                    <!-- Left Column: Image -->
                     <div class="flex justify-center lg:justify-end">
                         <div class="hero-image-frame p-3 bg-white/50 rounded-2xl shadow-2xl backdrop-blur-sm">
                             <img src="https://at8109.github.io/WhatsApp%20Image%202025-07-17%20at%2010.04.39%20PM.jpeg" alt="Abhay Tiwari Profile" class="rounded-xl w-64 h-64 md:w-80 md:h-80 object-cover">
                         </div>
                     </div>
-                    <!-- Right Column: Content -->
                     <div class="text-center lg:text-left hero-content">
                         <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 leading-tight mb-4">
                             Abhay Tiwari
@@ -156,8 +139,6 @@
             </div>
         </section>
 
-
-        <!-- About Me Section -->
         <section id="about" class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 mb-12 animate-fade-in">
             <h2 class="text-3xl font-bold text-slate-900 mb-6 text-center">About Me</h2>
             <div class="prose max-w-none text-slate-700">
@@ -176,16 +157,13 @@
             </div>
         </section>
 
-        <!-- SKILLS SECTION UPDATED -->
         <section id="skills" class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 mb-12 animate-fade-in">
             <h2 class="text-3xl font-bold text-slate-900 mb-8 text-center">Technical Skills</h2>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <!-- Left Column: Radar Chart -->
                 <div class="w-full max-w-lg mx-auto">
                     <h3 class="text-2xl font-semibold text-slate-800 mb-4 text-center">Language Proficiency</h3>
                     <canvas id="skillsRadarChart"></canvas>
                 </div>
-                <!-- Right Column: Skill Tags -->
                 <div class="space-y-8">
                     <div>
                         <h3 class="text-xl font-semibold text-slate-800 mb-4">Web Technologies</h3>
@@ -231,8 +209,6 @@
             </div>
         </section>
 
-
-        <!-- Experience Section -->
         <section id="experience" class="mb-12 animate-fade-in">
             <h2 class="text-3xl font-bold text-slate-900 mb-6 text-center">Professional Experience</h2>
             <div class="bg-white p-4 sm:p-6 rounded-xl shadow-sm border border-slate-200 mb-8">
@@ -242,45 +218,26 @@
                 </div>
             </div>
             
+            <!-- === TABS REVISED === -->
             <div id="tabs" class="flex flex-wrap justify-center gap-2 md:gap-4 mb-8 border-b border-slate-200 pb-4">
                 <button data-target="cognizant" class="tab-btn px-4 py-2 text-sm md:text-base rounded-lg border-2 border-transparent transition-colors duration-300 hover:bg-teal-50 hover:text-teal-700">Cognizant</button>
-                <button data-target="flexton2" class="tab-btn px-4 py-2 text-sm md:text-base rounded-lg border-2 border-transparent transition-colors duration-300 hover:bg-teal-50 hover:text-teal-700">Flexton (2023-2024)</button>
+                <button data-target="flexton2" class="tab-btn px-4 py-2 text-sm md:text-base rounded-lg border-2 border-transparent transition-colors duration-300 hover:bg-teal-50 hover:text-teal-700">Flexton Inc. (2023-2024)</button>
                 <button data-target="amdocs" class="tab-btn px-4 py-2 text-sm md:text-base rounded-lg border-2 border-transparent transition-colors duration-300 hover:bg-teal-50 hover:text-teal-700">Amdocs</button>
-                <button data-target="flexton1" class="tab-btn px-4 py-2 text-sm md:text-base rounded-lg border-2 border-transparent transition-colors duration-300 hover:bg-teal-50 hover:text-teal-700">Flexton (2018-2021)</button>
-                <button data-target="references" class="tab-btn px-4 py-2 text-sm md:text-base rounded-lg border-2 border-transparent transition-colors duration-300 hover:bg-teal-50 hover:text-teal-700">References</button>
+                <button data-target="flexton1" class="tab-btn px-4 py-2 text-sm md:text-base rounded-lg border-2 border-transparent transition-colors duration-300 hover:bg-teal-50 hover:text-teal-700">Flexton Inc. (2018-2021)</button>
             </div>
 
             <div id="content" class="space-y-6">
+                <!-- === CONTENT SECTIONS REVISED to remove confidential details === -->
                 <section id="cognizant" class="content-section hidden">
                     <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200">
-                        <div class="flex flex-col md:flex-row justify-between md:items-center border-b border-slate-200 pb-4 mb-6">
+                        <div class="flex flex-col md:flex-row justify-between md:items-center">
                             <div>
                                 <h3 class="text-2xl font-bold text-teal-700">Cognizant Technology Solutions</h3>
-                                <p class="text-lg text-slate-600">Sr. Associate Projects (Client: American Express)</p>
+                                <p class="text-lg text-slate-600">Sr. Associate Projects</p>
                             </div>
-                            <p class="text-md text-slate-500 mt-2 md:mt-0">Bengaluru, India</p>
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            <div class="bg-slate-50 p-4 rounded-lg">
-                                <h4 class="font-semibold text-slate-500 text-sm mb-1">Duration</h4>
-                                <p class="text-slate-800 font-medium">Sep 10, 2024 - Sep 12, 2025</p>
-                                <p class="text-slate-500 text-sm">(1 Year, 3 Days)</p>
-                            </div>
-                            <div class="bg-slate-50 p-4 rounded-lg">
-                                <h4 class="font-semibold text-slate-500 text-sm mb-1">Employee Code</h4>
-                                <p class="text-slate-800 font-medium">2364447</p>
-                            </div>
-                             <div class="bg-slate-50 p-4 rounded-lg">
-                                <h4 class="font-semibold text-slate-500 text-sm mb-1">Reason for Leaving</h4>
-                                <p class="text-slate-800 font-medium">Career Advancement</p>
-                            </div>
-                            <div class="bg-slate-50 p-4 rounded-lg md:col-span-2">
-                                <h4 class="font-semibold text-slate-500 text-sm mb-1">Starting Salary (Annual)</h4>
-                                <div class="flex space-x-4">
-                                     <p class="text-slate-800 font-medium"><strong>Total:</strong> ₹2,869,996</p>
-                                     <p class="text-slate-600"><strong>Fixed:</strong> ₹2,799,996</p>
-                                     <p class="text-slate-600"><strong>Variable:</strong> ₹70,000</p>
-                                </div>
+                            <div class="text-md text-slate-500 mt-2 md:mt-0 text-left md:text-right">
+                                <p>Sep 2024 - Present</p>
+                                <p>Bengaluru, India</p>
                             </div>
                         </div>
                     </div>
@@ -288,39 +245,14 @@
 
                 <section id="flexton2" class="content-section hidden">
                      <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200">
-                        <div class="flex flex-col md:flex-row justify-between md:items-center border-b border-slate-200 pb-4 mb-6">
+                        <div class="flex flex-col md:flex-row justify-between md:items-center">
                             <div>
                                 <h3 class="text-2xl font-bold text-teal-700">Flexton Inc.</h3>
                                 <p class="text-lg text-slate-600">Lead Technical Trainer & Interviewer</p>
                             </div>
-                            <p class="text-md text-slate-500 mt-2 md:mt-0">Remote / Bhopal, India</p>
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            <div class="bg-slate-50 p-4 rounded-lg">
-                                <h4 class="font-semibold text-slate-500 text-sm mb-1">Duration</h4>
-                                <p class="text-slate-800 font-medium">Jul 10, 2023 - Sep 6, 2024</p>
-                                <p class="text-slate-500 text-sm">(1 Year, 1 Month, 28 Days)</p>
-                            </div>
-                            <div class="bg-slate-50 p-4 rounded-lg">
-                                <h4 class="font-semibold text-slate-500 text-sm mb-1">Employee Code</h4>
-                                <p class="text-slate-800 font-medium">20</p>
-                            </div>
-                             <div class="bg-slate-50 p-4 rounded-lg">
-                                <h4 class="font-semibold text-slate-500 text-sm mb-1">Reason for Leaving</h4>
-                                <p class="text-slate-800 font-medium">Career Advancement</p>
-                            </div>
-                            <div class="bg-slate-50 p-4 rounded-lg">
-                                <h4 class="font-semibold text-slate-500 text-sm mb-1">Starting Salary (Annual CTC)</h4>
-                                 <div class="flex space-x-4">
-                                     <p class="text-slate-800 font-medium"><strong>Total:</strong> ₹1,000,000</p>
-                                     <p class="text-slate-600"><strong>Fixed:</strong> ₹800,000</p>
-                                     <p class="text-slate-600"><strong>Variable:</strong> ₹200,000</p>
-                                </div>
-                            </div>
-                            <div class="bg-slate-50 p-4 rounded-lg">
-                                <h4 class="font-semibold text-slate-500 text-sm mb-1">Final Salary</h4>
-                                <p class="text-slate-800 font-medium">₹64,859</p>
-                                <p class="text-slate-500 text-sm">(Net Pay, Jul 2024)</p>
+                            <div class="text-md text-slate-500 mt-2 md:mt-0 text-left md:text-right">
+                                <p>Jul 2023 - Sep 2024</p>
+                                <p>Remote / Bhopal, India</p>
                             </div>
                         </div>
                     </div>
@@ -328,115 +260,29 @@
 
                 <section id="amdocs" class="content-section hidden">
                     <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200">
-                        <div class="flex flex-col md:flex-row justify-between md:items-center border-b border-slate-200 pb-4 mb-6">
+                        <div class="flex flex-col md:flex-row justify-between md:items-center">
                             <div>
                                 <h3 class="text-2xl font-bold text-teal-700">Amdocs Inc.</h3>
                                 <p class="text-lg text-slate-600">Software Developer</p>
                             </div>
-                            <p class="text-md text-slate-500 mt-2 md:mt-0">Pune, India</p>
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            <div class="bg-slate-50 p-4 rounded-lg">
-                                <h4 class="font-semibold text-slate-500 text-sm mb-1">Duration</h4>
-                                <p class="text-slate-800 font-medium">Jun 3, 2021 - Apr 28, 2023</p>
-                                <p class="text-slate-500 text-sm">(1 Year, 10 Months, 26 Days)</p>
-                            </div>
-                            <div class="bg-slate-50 p-4 rounded-lg">
-                                <h4 class="font-semibold text-slate-500 text-sm mb-1">Employee Code</h4>
-                                <p class="text-slate-800 font-medium">179353</p>
-                            </div>
-                             <div class="bg-slate-50 p-4 rounded-lg">
-                                <h4 class="font-semibold text-slate-500 text-sm mb-1">Reason for Leaving</h4>
-                                <p class="text-slate-800 font-medium">Career Advancement</p>
-                            </div>
-                             <div class="bg-slate-50 p-4 rounded-lg">
-                                <h4 class="font-semibold text-slate-500 text-sm mb-1">Starting Salary (Annual)</h4>
-                                 <div class="flex space-x-4">
-                                     <p class="text-slate-800 font-medium"><strong>Total:</strong> ₹600,000</p>
-                                     <p class="text-slate-600"><strong>Fixed:</strong> ₹600,000</p>
-                                     <p class="text-slate-600"><strong>Variable:</strong> Annual Bonus Eligibility</p>
-                                </div>
-                            </div>
-                            <div class="bg-slate-50 p-4 rounded-lg">
-                                <h4 class="font-semibold text-slate-500 text-sm mb-1">Final Salary</h4>
-                                <p class="text-slate-800 font-medium">₹118,780.00</p>
-                                <p class="text-slate-500 text-sm">(Net Pay from Full & Final Settlement)</p>
-                            </div>
+                           <div class="text-md text-slate-500 mt-2 md:mt-0 text-left md:text-right">
+                                <p>Jun 2021 - Apr 2023</p>
+                                <p>Pune, India</p>
+                           </div>
                         </div>
                     </div>
                 </section>
 
                 <section id="flexton1" class="content-section hidden">
                      <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200">
-                        <div class="flex flex-col md:flex-row justify-between md:items-center border-b border-slate-200 pb-4 mb-6">
+                        <div class="flex flex-col md:flex-row justify-between md:items-center">
                             <div>
                                 <h3 class="text-2xl font-bold text-teal-700">Flexton Inc.</h3>
                                 <p class="text-lg text-slate-600">Technical Trainer</p>
                             </div>
-                            <p class="text-md text-slate-500 mt-2 md:mt-0">Bhopal, India</p>
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            <div class="bg-slate-50 p-4 rounded-lg">
-                                <h4 class="font-semibold text-slate-500 text-sm mb-1">Duration</h4>
-                                <p class="text-slate-800 font-medium">Apr 2, 2018 - Jun 4, 2021</p>
-                                <p class="text-slate-500 text-sm">(3 Years, 2 Months, 3 Days)</p>
-                            </div>
-                            <div class="bg-slate-50 p-4 rounded-lg">
-                                <h4 class="font-semibold text-slate-500 text-sm mb-1">Employee Code</h4>
-                                <p class="text-slate-800 font-medium">20</p>
-                            </div>
-                             <div class="bg-slate-50 p-4 rounded-lg">
-                                <h4 class="font-semibold text-slate-500 text-sm mb-1">Reason for Leaving</h4>
-                                <p class="text-slate-800 font-medium">Career Advancement</p>
-                            </div>
-                            <div class="bg-slate-50 p-4 rounded-lg">
-                                <h4 class="font-semibold text-slate-500 text-sm mb-1">Starting Salary (Annual Gross)</h4>
-                                <div class="flex space-x-4">
-                                     <p class="text-slate-800 font-medium"><strong>Total:</strong> ₹180,000</p>
-                                     <p class="text-slate-600"><strong>Fixed:</strong> ₹180,000</p>
-                                     <p class="text-slate-600"><strong>Variable:</strong> ₹0</p>
-                                </div>
-                            </div>
-                            <div class="bg-slate-50 p-4 rounded-lg">
-                                <h4 class="font-semibold text-slate-500 text-sm mb-1">Final Salary</h4>
-                                <p class="text-slate-800 font-medium">₹64,226</p>
-                                <p class="text-slate-500 text-sm">(Net Pay, May 2021)</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section id="references" class="content-section hidden">
-                    <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200">
-                        <h3 class="text-2xl font-bold text-teal-700 border-b border-slate-200 pb-4 mb-6">Professional References</h3>
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            <div>
-                                <h4 class="text-lg font-semibold text-slate-800 mb-2">Cognizant</h4>
-                                <ul class="space-y-2 text-slate-600">
-                                    <li><strong>S. Rameshwar:</strong> Senior Project Manager - ADM AVM BFS Delivery <br><span class="text-sm text-teal-600">Rameshwar.S@cognizant.com</span></li>
-                                    <li><strong>Ajay Hegde:</strong> Manager - Projects, QEA BFS <br><span class="text-sm text-teal-600">Ajay.Hegde@cognizant.com</span></li>
-                                    <li><strong>Shiladitya Chatterjee:</strong> Engagement Delivery Lead - ADM AppDev BFS Delivery <br><span class="text-sm text-teal-600">Shiladitya.Chatterjee3@cognizant.com</span></li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h4 class="text-lg font-semibold text-slate-800 mb-2">Flexton Inc.</h4>
-                                <ul class="space-y-2 text-slate-600">
-                                    <li><strong>Prasun Mahapatra:</strong> SVP & Global Head of HR and Operations <br><span class="text-sm text-teal-600">prasun@flextoninc.com</span></li>
-                                    <li><strong>Ashish Aronkar:</strong> Account Manager <br><span class="text-sm text-teal-600">accounts2@flextoninc.com</span></li>
-                                    <li><strong>General HR:</strong> <span class="text-sm text-teal-600">hrflexton@flextoninc.com</span></li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h4 class="text-lg font-semibold text-slate-800 mb-2">Amdocs Inc.</h4>
-                                <ul class="space-y-2 text-slate-600">
-                                     <li><strong>Pravin Kumar Tyagi:</strong> Manager <br><span class="text-sm text-teal-600">Pravinkumar.Tyagi@amdocs.com</span></li>
-                                     <li><strong>Yukti Dwivedi:</strong> Scrum Master <br><span class="text-sm text-teal-600">Yukti.Dwivedi@amdocs.com</span></li>
-                                     <li><strong>Current HR Partner:</strong> <span class="text-sm text-teal-600">mayamai@amdocs.com</span></li>
-                                     <li><strong>Business Lead:</strong> <span class="text-sm text-teal-600">Shruti.Naidu@amdocs.com</span></li>
-                                     <li><strong>Joining HR:</strong> <span class="text-sm text-teal-600">Namrata.Tripathi@amdocs.com</span></li>
-                                     <li><strong>Exit & Relieving Contacts:</strong> <span class="text-sm text-teal-600">Riddhi.Gonjari@amdocs.com</span>, <span class="text-sm text-teal-600">CNAIR@amdocs.com</span>, <span class="text-sm text-teal-600">Sheetal.Wagh@amdocs.com</span>, <span class="text-sm text-teal-600">Ankita.Dussal@amdocs.com</span>, <span class="text-sm text-teal-600">nidhi.chaudhary@amdocs.com</span>, <span class="text-sm text-teal-600">sangramy@amdocs.com</span>, <span class="text-sm text-teal-600">avinash.gadekar@amdocs.com</span>, <span class="text-sm text-teal-600">mugdhar@amdocs.com</span></li>
-                                     <li><strong>Employment Verification:</strong> <span class="text-sm text-teal-600">EXEmployeeBGV@amdocs.com</span></li>
-                                </ul>
+                            <div class="text-md text-slate-500 mt-2 md:mt-0 text-left md:text-right">
+                                <p>Apr 2018 - Jun 2021</p>
+                                <p>Bhopal, India</p>
                             </div>
                         </div>
                     </div>
@@ -444,60 +290,47 @@
             </div>
         </section>
 
-        <!-- Projects Section -->
+        <!-- === PROJECTS SECTION REVISED for professionalism === -->
         <section id="projects" class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 mb-12 animate-fade-in">
             <h2 class="text-3xl font-bold text-slate-900 mb-6 text-center">Projects & Key Contributions</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Project 1: American Express Backend Solution -->
                 <div class="bg-slate-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
-                    <h3 class="text-xl font-bold text-teal-700 mb-3">🚀 Scalable Backend Solution (American Express)</h3>
+                    <h3 class="text-xl font-bold text-teal-700 mb-3">🚀 Large-Scale Data Pipeline for a Financial Services Client</h3>
                     <ul class="list-disc list-inside space-y-2 text-slate-700">
-                        <li>Architected and developed a scalable backend solution to extract and transform high-volume transaction data (~200 M+ records) across ~2M customers, producing four structured output files to support downstream processing and external vendor integration.</li>
-                        <li>Designed and implemented an end-to-end Golang-based data pipeline that continuously polls reconciliation data, processes it in parallel using goroutines, ants pool, and waitgroups, and generates both customer-level summaries and supplementary-level transactional records.</li>
-                        <li>Leveraged PostgreSQL with pgxpool and pgxbatch for high-throughput data access using CTEs and optimized batch operations.</li>
-                        <li>Deployed the solution on a secure, OpenShift-based internal cloud platform with integrated observability (Grafana, Consul, Splunk), enforced security through automated vulnerability scanning (Earlybird, in-cluster tools), and extended CI/CD pipelines (GitHub Actions, Makefile, Docker Compose) to enable secure file delivery via PVC and SFTP.</li>
+                        <li>Architected a scalable backend solution to extract and transform high-volume transaction data, supporting critical downstream processing and vendor integration.</li>
+                        <li>Implemented an end-to-end Golang data pipeline using goroutines, worker pools, and waitgroups for efficient parallel processing of millions of records.</li>
+                        <li>Utilized PostgreSQL with pgxpool/pgxbatch for high-throughput data access, designing optimized CTEs and batch operations.</li>
+                        <li>Deployed the solution on a secure OpenShift cloud platform, integrating observability tools (Grafana, Splunk) and extending CI/CD pipelines for automated delivery.</li>
                     </ul>
                 </div>
-
-                <!-- Project 2: Attendance Management System (Flexton Inc.) -->
                 <div class="bg-slate-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
-                    <h3 class="text-xl font-bold text-teal-700 mb-3">⏰ Attendance Management System (Flexton Inc.)</h3>
+                    <h3 class="text-xl font-bold text-teal-700 mb-3">⚙️ Microservices & BPM Workflows for a Telecom Company</h3>
                     <ul class="list-disc list-inside space-y-2 text-slate-700">
-                        <li>Built an Attendance Management System for ~80 employees using Golang, MongoDB, and AWS Kubernetes Service, with REST APIs for login/signup, attendance retrieval, creation, and a React-based frontend.</li>
+                        <li>Developed and enhanced REST APIs and Activiti BPM workflows within a complex microservices architecture using Java, Spring Boot, React, and Kafka.</li>
+                        <li>Led customization of key features including product cloning, proposal management, and role-based API authorization.</li>
+                        <li>Drove the migration of microservices to containerized environments using Docker, Kubernetes, and Helm on an OpenShift platform.</li>
                     </ul>
                 </div>
-
-                <!-- Project 3: Candidate Feedback Database (Flexton Inc.) -->
                 <div class="bg-slate-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
-                    <h3 class="text-xl font-bold text-teal-700 mb-3">💬 Candidate Feedback Database (Flexton Inc.)</h3>
+                    <h3 class="text-xl font-bold text-teal-700 mb-3">⏰ Employee Attendance Management System</h3>
                     <ul class="list-disc list-inside space-y-2 text-slate-700">
-                        <li>Designed a Candidate Feedback Database using Rust, Tokio, and Axum, implementing APIs for feedback record management and integrating the backend with a React-based UI. Deployed the complete solution on AWS.</li>
+                        <li>Built a full-stack Attendance Management System using Golang, MongoDB, and a React frontend, deployed on AWS with Kubernetes.</li>
+                        <li>Designed and implemented secure REST APIs for core functionalities including user authentication, attendance tracking, and data retrieval.</li>
                     </ul>
                 </div>
-
-                <!-- Project 4: Amdocs Microservices & BPM Workflows -->
                 <div class="bg-slate-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
-                    <h3 class="text-xl font-bold text-teal-700 mb-3">⚙️ Microservices & BPM Workflows (Amdocs Inc.)</h3>
+                    <h3 class="text-xl font-bold text-teal-700 mb-3">🎓 Technical Training & Mentorship</h3>
                     <ul class="list-disc list-inside space-y-2 text-slate-700">
-                        <li>Developed and enhanced REST APIs and Activiti BPM workflows in a microservices architecture using Java 8, Spring Boot, React JS, Kafka, and SQL.</li>
-                        <li>Customized features such as product cloning, proposal management, multithreading for BPMN flows, and role-based API authorization and performed unit and integration testing to ensure code quality and reliability.</li>
-                        <li>Migrated microservices to containerized environments with Docker, Kubernetes, and deployed on OpenShift using Helm. Managed pod lifecycle and configured API roles using OpenShift IAM tools.</li>
-                    </ul>
-                </div>
-
-                 <!-- Project 5: Technical Screener/Trainer (Flexton Inc.) -->
-                <div class="bg-slate-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
-                    <h3 class="text-xl font-bold text-teal-700 mb-3">🎓 Technical Screener/Trainer (Flexton Inc.)</h3>
-                    <ul class="list-disc list-inside space-y-2 text-slate-700">
-                        <li>Promoted as Technical Screener/Trainer specializing in Java, JavaScript, React, Spring Boot, REST APIs, and Data Structures & Algorithms.</li>
+                        <li>As a Technical Screener and Trainer, developed curriculum and mentored junior developers in Java, JavaScript, React, Spring Boot, REST APIs, and DSA.</li>
+                        <li>Conducted technical interviews and provided constructive feedback to candidates, improving the quality of technical hiring.</li>
                     </ul>
                 </div>
             </div>
         </section>
 
-        <!-- Certifications and Links Section -->
+        <!-- === CERTIFICATIONS SECTION REVISED to include professional standard for references === -->
         <section id="certifications" class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 mb-12 animate-fade-in">
-            <h2 class="text-3xl font-bold text-slate-900 mb-6 text-center">Certifications & Coding Profiles</h2>
+            <h2 class="text-3xl font-bold text-slate-900 mb-6 text-center">Certifications & Credentials</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
                     <h3 class="text-xl font-semibold text-slate-800 mb-3">Certifications</h3>
@@ -506,20 +339,20 @@
                         <li>Problem Solving - HackerRank</li>
                         <li>JavaScript - HackerRank</li>
                         <li>Learning Solid Programming Principles</li>
-                        <li>Golang Certifications: HackerRank Certificate, Hands-on, Design Patterns, REST API Server</li>
+                        <li>Golang Certifications: Certificate, Design Patterns, REST API</li>
                     </ul>
                 </div>
                 <div>
-                    <h3 class="text-xl font-semibold text-slate-800 mb-3">Coding Profiles</h3>
+                    <h3 class="text-xl font-semibold text-slate-800 mb-3">Coding Profiles & References</h3>
                     <ul class="list-disc list-inside space-y-2 text-slate-700">
                         <li><a href="https://www.hackerrank.com/profile/at8109" target="_blank" class="text-teal-600 hover:underline">HackerRank Profile</a></li>
                         <li><a href="https://leetcode.com/u/AbhayTiwariFlex/" target="_blank" class="text-teal-600 hover:underline">LeetCode Profile</a></li>
+                        <li><strong>Professional references available upon request.</strong></li>
                     </ul>
                 </div>
             </div>
         </section>
 
-        <!-- Contact Section -->
         <section id="contact" class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 mb-12 text-center animate-fade-in">
             <h2 class="text-3xl font-bold text-slate-900 mb-6">Get in Touch</h2>
             <p class="text-lg text-slate-700 mb-4">
@@ -575,7 +408,6 @@
                 }
             });
             
-            // Set initial active tab and section
             showSection('cognizant');
 
             const timelineCtx = document.getElementById('timelineChart').getContext('2d');
@@ -604,30 +436,16 @@
                             },
                             min: '2018-01-01',
                             max: '2026-01-01',
-                            grid: {
-                                color: 'rgba(200, 200, 200, 0.1)',
-                            },
-                            ticks: {
-                                font: {
-                                    size: 10
-                                }
-                            }
+                            grid: { color: 'rgba(200, 200, 200, 0.1)' },
+                            ticks: { font: { size: 10 } }
                         },
                         y: {
-                            grid: {
-                                display: false
-                            },
-                             ticks: {
-                                font: {
-                                    size: 11
-                                }
-                            }
+                            grid: { display: false },
+                             ticks: { font: { size: 11 } }
                         }
                     },
                     plugins: {
-                        legend: {
-                            display: false
-                        },
+                        legend: { display: false },
                         tooltip: {
                             callbacks: {
                                 label: function(context) {
@@ -650,7 +468,6 @@
                 }
             });
             
-            // === Chart.js Radar Chart configuration ===
             const radarCtx = document.getElementById('skillsRadarChart').getContext('2d');
             new Chart(radarCtx, {
                 type: 'radar',
@@ -658,7 +475,7 @@
                     labels: ['Java', 'JavaScript', 'Golang', 'Rust', 'Spring Boot', 'React'],
                     datasets: [{
                         label: 'Proficiency',
-                        data: [90, 85, 80, 70, 90, 85], // Proficiency on a scale of 0-100
+                        data: [90, 85, 80, 70, 90, 85],
                         backgroundColor: 'rgba(13, 148, 136, 0.2)',
                         borderColor: 'rgba(13, 148, 136, 1)',
                         pointBackgroundColor: 'rgba(13, 148, 136, 1)',
@@ -673,18 +490,11 @@
                     maintainAspectRatio: true,
                     scales: {
                         r: {
-                            angleLines: {
-                                color: 'rgba(0, 0, 0, 0.1)'
-                            },
-                            grid: {
-                                color: 'rgba(0, 0, 0, 0.1)'
-                            },
+                            angleLines: { color: 'rgba(0, 0, 0, 0.1)' },
+                            grid: { color: 'rgba(0, 0, 0, 0.1)' },
                             pointLabels: {
-                                font: {
-                                    size: 14,
-                                    weight: 'bold'
-                                },
-                                color: '#334155' // slate-700
+                                font: { size: 14, weight: 'bold' },
+                                color: '#334155'
                             },
                             ticks: {
                                 backdropColor: 'transparent',
@@ -696,62 +506,41 @@
                         }
                     },
                     plugins: {
-                        legend: {
-                            display: false // We can hide the legend as the chart is self-explanatory
-                        }
+                        legend: { display: false }
                     }
                 }
             });
 
-
-            // Smooth scrolling for navigation links and active state
             navLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
-                    });
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
                 });
             });
 
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.5 // Adjust as needed
-            };
-
-            const observer = new IntersectionObserver((entries, observer) => {
+            const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         navLinks.forEach(link => {
-                            link.classList.remove('active');
-                            if (link.getAttribute('href') === `#${entry.target.id}`) {
-                                link.classList.add('active');
-                            }
+                            link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id}`);
                         });
                     }
                 });
-            }, observerOptions);
+            }, { threshold: 0.5 });
 
-            document.querySelectorAll('section[id]').forEach(section => {
-                observer.observe(section);
-            });
+            document.querySelectorAll('section[id]').forEach(section => observer.observe(section));
 
-            // Typing effect for Hero section
             const typingTextElement = document.querySelector('.typing-text');
             const textToType = "Senior Software Engineer";
             let charIndex = 0;
-
             function typeText() {
                 if (charIndex < textToType.length) {
                     typingTextElement.textContent = textToType.substring(0, charIndex + 1);
                     charIndex++;
-                    setTimeout(typeText, 100); // Typing speed
-                } else {
-                    // Optional: loop or stop
+                    setTimeout(typeText, 100);
                 }
             }
-            typeText(); // Start typing animation
+            typeText();
         });
     </script>
 </body>
