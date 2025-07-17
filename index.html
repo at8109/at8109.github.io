@@ -1,12 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abhay Tiwari - Interactive Employment History</title>
+    <title>Abhay Tiwari - Senior Software Engineer Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+    <!-- Chosen Palette: Calm Neutrals (Off-white background, slate gray text, muted teal accents) -->
+    <!-- Application Structure Plan: The website is structured as a single-page portfolio with a sticky navigation bar allowing users to jump between sections (Home, About, Skills, Experience, Projects, Certifications, Contact). The Experience section includes an interactive timeline chart for a high-level overview, with detailed job cards revealed via tabs or timeline clicks. The Projects section uses a grid layout for individual project cards. This structure provides a clear, logical flow for presenting professional information, enabling both quick scanning and deep dives into specific areas of interest, chosen to mirror common developer portfolio best practices for usability and comprehensive display of qualifications. -->
+    <!-- Visualization & Content Choices: 
+        Report Info: Overall professional summary, contact. -> Goal: Introduce and provide quick contact. -> Viz/Presentation Method: Hero section, About section, Contact section. -> Interaction: Navigation links, direct contact links. -> Justification: Standard portfolio elements for immediate impact and accessibility. -> Library/Method: HTML/CSS/Tailwind.
+        Report Info: Skills (languages, frameworks, tools). -> Goal: Showcase technical breadth. -> Viz/Presentation Method: Categorized lists. -> Interaction: None. -> Justification: Clear and concise presentation of technical capabilities. -> Library/Method: HTML/CSS/Tailwind.
+        Report Info: Employment history (dates, roles, companies). -> Goal: Show career progression. -> Viz/Presentation Method: Interactive horizontal bar chart (timeline) and detailed job cards. -> Interaction: Clicking timeline segments or tabs reveals specific job details. -> Justification: Provides both a visual overview and granular details, making career path easy to understand. -> Library/Method: Chart.js (Canvas) for timeline, HTML/CSS/Tailwind for job cards.
+        Report Info: Project descriptions. -> Goal: Detail technical accomplishments. -> Viz/Presentation Method: Project cards with descriptions. -> Interaction: None. -> Justification: Highlights specific achievements and technical contributions in a readable format. -> Library/Method: HTML/CSS/Tailwind.
+        Report Info: Certifications and coding profiles. -> Goal: Validate expertise and provide external links. -> Viz/Presentation Method: Lists with hyperlinks. -> Interaction: Clickable links. -> Justification: Offers verifiable credentials and further exploration of coding work. -> Library/Method: HTML/CSS/Tailwind.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -36,26 +46,158 @@
                 max-height: 350px;
             }
         }
+        .nav-link.active {
+            color: #0d9488;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body class="bg-stone-50 text-slate-800">
 
-    <div class="container mx-auto p-4 md:p-8">
-        <header class="text-center mb-8">
-            <h1 class="text-3xl md:text-4xl font-bold text-slate-900">Abhay Tiwari</h1>
-            <p class="text-lg text-slate-600 mt-2">Professional Employment History</p>
-        </header>
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#hero" class="text-xl font-bold text-slate-900">Abhay Tiwari</a>
+            <div class="space-x-4 md:space-x-6">
+                <a href="#about" class="nav-link text-slate-600 hover:text-teal-700 transition-colors duration-300">About</a>
+                <a href="#skills" class="nav-link text-slate-600 hover:text-teal-700 transition-colors duration-300">Skills</a>
+                <a href="#experience" class="nav-link text-slate-600 hover:text-teal-700 transition-colors duration-300">Experience</a>
+                <a href="#projects" class="nav-link text-slate-600 hover:text-teal-700 transition-colors duration-300">Projects</a>
+                <a href="#certifications" class="nav-link text-slate-600 hover:text-teal-700 transition-colors duration-300">Certifications</a>
+                <a href="#contact" class="nav-link text-slate-600 hover:text-teal-700 transition-colors duration-300">Contact</a>
+            </div>
+        </nav>
+    </header>
 
-        <section id="timeline" class="mb-8 md:mb-12">
-             <div class="bg-white p-4 sm:p-6 rounded-xl shadow-sm border border-slate-200">
-                <h2 class="text-xl font-bold text-center mb-4 text-slate-700">Career Timeline</h2>
+    <main class="container mx-auto p-4 md:p-8">
+        <!-- Hero Section -->
+        <section id="hero" class="min-h-screen flex items-center justify-center text-center bg-gradient-to-br from-teal-50 to-stone-100 rounded-xl shadow-lg mb-12">
+            <div class="max-w-3xl px-4 py-16">
+                <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 leading-tight mb-4">
+                    Abhay Tiwari
+                </h1>
+                <p class="text-xl md:text-2xl text-slate-700 mb-6">
+                    Senior Software Engineer with 7+ years of experience building scalable backend systems and intuitive frontends.
+                </p>
+                <p class="text-lg text-slate-600">
+                    Proficient in Java, Golang, Rust, Spring Boot, and React, with strong expertise in microservices, data pipelines, and cloud-native deployments. Skilled in applying design patterns and SOLID principles to deliver high-performance, production-ready solutions.
+                </p>
+                <div class="mt-8 space-x-4">
+                    <a href="#contact" class="inline-block bg-teal-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-teal-700 transition-colors duration-300">Get in Touch</a>
+                    <a href="#projects" class="inline-block border-2 border-teal-600 text-teal-600 px-6 py-3 rounded-lg hover:bg-teal-100 transition-colors duration-300">View Projects</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="about" class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 mb-12">
+            <h2 class="text-3xl font-bold text-slate-900 mb-6 text-center">About Me</h2>
+            <div class="prose max-w-none text-slate-700">
+                <p>
+                    I am a passionate Senior Software Engineer with over 7 years of hands-on experience in crafting robust backend systems and engaging user interfaces. My expertise spans a variety of modern technologies and methodologies, enabling me to deliver high-performance, production-ready solutions.
+                </p>
+                <p>
+                    My journey in software development has equipped me with a deep understanding of microservices architectures, efficient data pipelines, and seamless cloud-native deployments. I am committed to applying best practices, including design patterns and SOLID principles, to ensure code quality, scalability, and maintainability.
+                </p>
+                <h3 class="text-xl font-semibold text-slate-800 mt-6 mb-3">Education</h3>
+                <ul class="list-disc list-inside space-y-2">
+                    <li><strong>Bachelor of Engineering, Information Technology</strong></li>
+                    <li>University Institute of Technology, Bhopal. M. P</li>
+                    <li>July 2014 - July 2018</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 mb-12">
+            <h2 class="text-3xl font-bold text-slate-900 mb-6 text-center">Skills</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold text-slate-800 mb-3">Programming Languages</h3>
+                    <ul class="list-disc list-inside space-y-2 text-slate-700">
+                        <li>Java</li>
+                        <li>JavaScript</li>
+                        <li>Golang</li>
+                        <li>Rust</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-slate-800 mb-3">Web Technologies</h3>
+                    <ul class="list-disc list-inside space-y-2 text-slate-700">
+                        <li>JavaScript</li>
+                        <li>React</li>
+                        <li>HTML</li>
+                        <li>CSS</li>
+                        <li>Restful Web Services</li>
+                        <li>GraphQL</li>
+                        <li>gRPC</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-slate-800 mb-3">Frameworks</h3>
+                    <ul class="list-disc list-inside space-y-2 text-slate-700">
+                        <li>Spring Boot</li>
+                        <li>Hibernate</li>
+                        <li>Spring Data JPA</li>
+                        <li>Spring Cloud</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-slate-800 mb-3">Databases</h3>
+                    <ul class="list-disc list-inside space-y-2 text-slate-700">
+                        <li>MYSQL</li>
+                        <li>PostgreSQL</li>
+                        <li>MongoDB</li>
+                        <li>DynamoDB</li>
+                        <li>Couchbase</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-slate-800 mb-3">Cloud Technologies</h3>
+                    <ul class="list-disc list-inside space-y-2 text-slate-700">
+                        <li>OpenShift Cloud Platform</li>
+                        <li>AWS - S3, EC2, Dynamo DB, Firebase</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-slate-800 mb-3">DevOps & Version Control</h3>
+                    <ul class="list-disc list-inside space-y-2 text-slate-700">
+                        <li>Kubernetes</li>
+                        <li>Docker</li>
+                        <li>Helm</li>
+                        <li>Git</li>
+                        <li>BitBucket</li>
+                        <li>Perforce</li>
+                    </ul>
+                </div>
+                <div class="lg:col-span-3">
+                    <h3 class="text-xl font-semibold text-slate-800 mb-3">Tools & Technologies</h3>
+                    <ul class="list-disc list-inside space-y-2 text-slate-700">
+                        <li>Apache Kafka</li>
+                        <li>Swagger OPEN API Specification</li>
+                        <li>Elasticsearch</li>
+                        <li>Kibana</li>
+                        <li>SLF4J</li>
+                        <li>Maven</li>
+                        <li>Postman</li>
+                        <li>IntelliJ</li>
+                        <li>Visual Studio Code</li>
+                        <li>Eclipse</li>
+                        <li>Activiti BPMN</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section (reusing previous content) -->
+        <section id="experience" class="mb-12">
+            <h2 class="text-3xl font-bold text-slate-900 mb-6 text-center">Professional Experience</h2>
+            <div class="bg-white p-4 sm:p-6 rounded-xl shadow-sm border border-slate-200 mb-8">
+                <h3 class="text-xl font-bold text-center mb-4 text-slate-700">Career Timeline Overview</h3>
                 <div class="chart-container">
                     <canvas id="timelineChart"></canvas>
                 </div>
             </div>
-        </section>
-        
-        <main>
+            
             <div id="tabs" class="flex flex-wrap justify-center gap-2 md:gap-4 mb-8 border-b border-slate-200 pb-4">
                 <button data-target="cognizant" class="tab-btn px-4 py-2 text-sm md:text-base rounded-lg border-2 border-transparent transition-colors duration-300 hover:bg-teal-50 hover:text-teal-700">Cognizant</button>
                 <button data-target="flexton2" class="tab-btn px-4 py-2 text-sm md:text-base rounded-lg border-2 border-transparent transition-colors duration-300 hover:bg-teal-50 hover:text-teal-700">Flexton (2023-2024)</button>
@@ -256,15 +398,113 @@
                     </div>
                 </section>
             </div>
-        </main>
-    </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 mb-12">
+            <h2 class="text-3xl font-bold text-slate-900 mb-6 text-center">Projects & Key Contributions</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Project 1: American Express Backend Solution -->
+                <div class="bg-slate-50 p-6 rounded-lg shadow-sm">
+                    <h3 class="text-xl font-bold text-teal-700 mb-3">Scalable Backend Solution (American Express)</h3>
+                    <ul class="list-disc list-inside space-y-2 text-slate-700">
+                        <li>Architected and developed a scalable backend solution to extract and transform high-volume transaction data (~200 M+ records) across ~2M customers, producing four structured output files to support downstream processing and external vendor integration.</li>
+                        <li>Designed and implemented an end-to-end Golang-based data pipeline that continuously polls reconciliation data, processes it in parallel using goroutines, ants pool, and waitgroups, and generates both customer-level summaries and supplementary-level transactional records.</li>
+                        <li>Leveraged PostgreSQL with pgxpool and pgxbatch for high-throughput data access using CTEs and optimized batch operations.</li>
+                        <li>Deployed the solution on a secure, OpenShift-based internal cloud platform with integrated observability (Grafana, Consul, Splunk), enforced security through automated vulnerability scanning (Earlybird, in-cluster tools), and extended CI/CD pipelines (GitHub Actions, Makefile, Docker Compose) to enable secure file delivery via PVC and SFTP.</li>
+                    </ul>
+                </div>
+
+                <!-- Project 2: Attendance Management System (Flexton Inc.) -->
+                <div class="bg-slate-50 p-6 rounded-lg shadow-sm">
+                    <h3 class="text-xl font-bold text-teal-700 mb-3">Attendance Management System (Flexton Inc.)</h3>
+                    <ul class="list-disc list-inside space-y-2 text-slate-700">
+                        <li>Built an Attendance Management System for ~80 employees using Golang, MongoDB, and AWS Kubernetes Service, with REST APIs for login/signup, attendance retrieval, creation, and a React-based frontend.</li>
+                    </ul>
+                </div>
+
+                <!-- Project 3: Candidate Feedback Database (Flexton Inc.) -->
+                <div class="bg-slate-50 p-6 rounded-lg shadow-sm">
+                    <h3 class="text-xl font-bold text-teal-700 mb-3">Candidate Feedback Database (Flexton Inc.)</h3>
+                    <ul class="list-disc list-inside space-y-2 text-slate-700">
+                        <li>Designed a Candidate Feedback Database using Rust, Tokio, and Axum, implementing APIs for feedback record management and integrating the backend with a React-based UI. Deployed the complete solution on AWS.</li>
+                    </ul>
+                </div>
+
+                <!-- Project 4: Amdocs Microservices & BPM Workflows -->
+                <div class="bg-slate-50 p-6 rounded-lg shadow-sm">
+                    <h3 class="text-xl font-bold text-teal-700 mb-3">Microservices & BPM Workflows (Amdocs Inc.)</h3>
+                    <ul class="list-disc list-inside space-y-2 text-slate-700">
+                        <li>Developed and enhanced REST APIs and Activiti BPM workflows in a microservices architecture using Java 8, Spring Boot, React JS, Kafka, and SQL.</li>
+                        <li>Customized features such as product cloning, proposal management, multithreading for BPMN flows, and role-based API authorization and performed unit and integration testing to ensure code quality and reliability.</li>
+                        <li>Migrated microservices to containerized environments with Docker, Kubernetes, and deployed on OpenShift using Helm. Managed pod lifecycle and configured API roles using OpenShift IAM tools.</li>
+                    </ul>
+                </div>
+
+                 <!-- Project 5: Technical Screener/Trainer (Flexton Inc.) -->
+                <div class="bg-slate-50 p-6 rounded-lg shadow-sm">
+                    <h3 class="text-xl font-bold text-teal-700 mb-3">Technical Screener/Trainer (Flexton Inc.)</h3>
+                    <ul class="list-disc list-inside space-y-2 text-slate-700">
+                        <li>Promoted as Technical Screener/Trainer specializing in Java, JavaScript, React, Spring Boot, REST APIs, and Data Structures & Algorithms.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications and Links Section -->
+        <section id="certifications" class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 mb-12">
+            <h2 class="text-3xl font-bold text-slate-900 mb-6 text-center">Certifications & Coding Profiles</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold text-slate-800 mb-3">Certifications</h3>
+                    <ul class="list-disc list-inside space-y-2 text-slate-700">
+                        <li>Java Certification - HackerRank</li>
+                        <li>Problem Solving - HackerRank</li>
+                        <li>JavaScript - HackerRank</li>
+                        <li>Learning Solid Programming Principles</li>
+                        <li>Golang Certifications: HackerRank Certificate, Hands-on, Design Patterns, REST API Server</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-slate-800 mb-3">Coding Profiles</h3>
+                    <ul class="list-disc list-inside space-y-2 text-slate-700">
+                        <li><a href="https://www.hackerrank.com/your-hackerrank-profile" target="_blank" class="text-teal-600 hover:underline">HackerRank Profile</a></li>
+                        <li><a href="https://leetcode.com/your-leetcode-profile" target="_blank" class="text-teal-600 hover:underline">LeetCode Profile</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 mb-12 text-center">
+            <h2 class="text-3xl font-bold text-slate-900 mb-6">Get in Touch</h2>
+            <p class="text-lg text-slate-700 mb-4">
+                Feel free to reach out for collaborations, job opportunities, or just to say hello!
+            </p>
+            <div class="space-y-4">
+                <p class="text-xl text-slate-800">
+                    Email: <a href="mailto:abhaytiwari4330@gmail.com" class="text-teal-600 hover:underline">abhaytiwari4330@gmail.com</a>
+                </p>
+                <p class="text-xl text-slate-800">
+                    Phone: +91-7879404330
+                </p>
+                <p class="text-xl text-slate-800">
+                    LinkedIn: <a href="https://www.linkedin.com/in/abhaytiwari4330" target="_blank" class="text-teal-600 hover:underline">linkedin.com/in/abhaytiwari4330</a>
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-slate-800 text-white py-6 text-center">
+        <p>&copy; 2025 Abhay Tiwari. All rights reserved.</p>
+    </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const employmentData = [
-                { id: 'flexton1', name: 'Flexton Inc.', start: '2018-04-02', end: '2021-06-04', color: 'rgba(13, 148, 136, 0.7)' },
+                { id: 'flexton1', name: 'Flexton Inc. (2018-2021)', start: '2018-04-02', end: '2021-06-04', color: 'rgba(13, 148, 136, 0.7)' },
                 { id: 'amdocs', name: 'Amdocs Inc.', start: '2021-06-03', end: '2023-04-28', color: 'rgba(15, 118, 110, 0.7)' },
-                { id: 'flexton2', name: 'Flexton Inc.', start: '2023-07-10', end: '2024-09-06', color: 'rgba(13, 148, 136, 0.7)' },
+                { id: 'flexton2', name: 'Flexton Inc. (2023-2024)', start: '2023-07-10', end: '2024-09-06', color: 'rgba(13, 148, 136, 0.7)' },
                 { id: 'cognizant', name: 'Cognizant', start: '2024-09-10', end: '2025-09-12', color: 'rgba(4, 120, 87, 0.7)' },
             ];
 
@@ -272,6 +512,7 @@
             const contentContainer = document.getElementById('content');
             const tabButtons = tabsContainer.querySelectorAll('.tab-btn');
             const contentSections = contentContainer.querySelectorAll('.content-section');
+            const navLinks = document.querySelectorAll('.nav-link');
 
             function showSection(targetId) {
                 tabButtons.forEach(btn => {
@@ -290,6 +531,7 @@
                 }
             });
             
+            // Set initial active tab and section
             showSection('cognizant');
 
             const timelineCtx = document.getElementById('timelineChart').getContext('2d');
@@ -362,6 +604,39 @@
                         }
                     }
                 }
+            });
+
+            // Smooth scrolling for navigation links and active state
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.5 // Adjust as needed
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${entry.target.id}`) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('section[id]').forEach(section => {
+                observer.observe(section);
             });
         });
     </script>
