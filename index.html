@@ -7,15 +7,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
-    <!-- Chosen Palette: Calm Neutrals (Off-white background, slate gray text, muted teal accents) -->
-    <!-- Application Structure Plan: The application is structured as an interactive dashboard. At the top, a horizontal timeline chart provides a high-level visualization of the entire career path, showing the duration and overlap of each role. Below this, a tab-based navigation system allows users to select a specific role. Clicking a tab or a segment on the timeline reveals a detailed card for that employment period. This dual-navigation approach was chosen for usability: it allows users to either get a quick visual summary from the timeline or directly access detailed information via the tabs, supporting both exploratory and targeted information retrieval. -->
-    <!-- Visualization & Content Choices: 
-        Report Info: Complete career path. -> Goal: Show change/progression over time. -> Viz/Presentation Method: Interactive horizontal bar chart (timeline). -> Interaction: Clicking a bar segment filters the detailed view below. -> Justification: Provides an immediate, high-level visual summary of the entire employment history, making it easy to understand career progression. -> Library/Method: Chart.js (Canvas).
-        Report Info: Details for each job (dates, salary, location, etc.). -> Goal: Inform. -> Viz/Presentation Method: Thematic content cards. -> Interaction: Displayed/hidden based on tab or timeline selection. -> Justification: Organizes detailed information cleanly, preventing cognitive overload by presenting one role at a time in a structured format. -> Library/Method: HTML/CSS/Tailwind.
-        Report Info: Starting and Final Salary data. -> Goal: Inform. -> Viz/Presentation Method: Simple key-value pairs. -> Interaction: None. -> Justification: Presents specific financial data points clearly and directly as requested, without unnecessary complexity. -> Library/Method: HTML/CSS/Tailwind.
-        Report Info: Professional references. -> Goal: Organize. -> Viz/Presentation Method: Grouped list within a dedicated tabbed section. -> Interaction: None. -> Justification: Consolidates all contact information into a single, easily accessible location. -> Library/Method: HTML/CSS/Tailwind.
-    -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
         body {
             font-family: 'Inter', sans-serif;
