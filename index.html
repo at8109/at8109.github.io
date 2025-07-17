@@ -7,6 +7,13 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+    
+    <!-- Advanced Libraries -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -89,9 +96,235 @@
         .hero-content .typing-text { animation-delay: 0.4s; }
         .hero-content .summary-text { animation-delay: 0.6s; }
         .hero-content .button-group { animation-delay: 0.8s; }
+        
+        /* Advanced Animations & Effects */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, #0d9488, #14b8a6);
+            z-index: 9999;
+            transition: width 0.3s ease;
+        }
+        
+        .floating-action {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #0d9488, #14b8a6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(13, 148, 136, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .floating-action:hover {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 15px 35px rgba(13, 148, 136, 0.4);
+        }
+        
+        .skill-tag {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .skill-tag::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
+        }
+        
+        .skill-tag:hover::before {
+            left: 100%;
+        }
+        
+        .skill-tag:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(13, 148, 136, 0.2);
+        }
+        
+        .project-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(13, 148, 136, 0.1), rgba(20, 184, 166, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .project-card:hover::before {
+            opacity: 1;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .section-card {
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .section-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #0d9488, #14b8a6);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        .typing-effect {
+            border-right: 2px solid #0d9488;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { border-color: #0d9488; }
+            51%, 100% { border-color: transparent; }
+        }
+        
+        .stats-counter {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #0d9488;
+            transition: all 0.3s ease;
+        }
+        
+        .stats-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .stats-card:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(13, 148, 136, 0.2);
+        }
+        
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, #0d9488, #14b8a6);
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 20px rgba(13, 148, 136, 0.5);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(13, 148, 136, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(13, 148, 136, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(13, 148, 136, 0); }
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            backdrop-filter: blur(10px);
+        }
+        
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            animation: modalSlideIn 0.3s ease;
+        }
+        
+        @keyframes modalSlideIn {
+            from { opacity: 0; transform: translate(-50%, -60%); }
+            to { opacity: 1; transform: translate(-50%, -50%); }
+        }
+        
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 30px;
+            cursor: pointer;
+            color: #666;
+            transition: color 0.3s ease;
+        }
+        
+        .close:hover {
+            color: #0d9488;
+        }
     </style>
 </head>
 <body class="bg-stone-50 text-slate-800">
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <!-- Particle Background -->
+    <div id="particles-js"></div>
 
     <header class="bg-white shadow-sm sticky top-0 z-50">
         <nav class="container mx-auto px-4 py-3 flex justify-between items-center">
@@ -108,26 +341,26 @@
     </header>
 
     <main class="container mx-auto p-4 md:p-8">
-        <!-- === HERO SECTION HEIGHT UPDATED HERE === -->
-        <section id="hero" class="flex items-center justify-center animated-gradient rounded-2xl shadow-xl mb-16 overflow-hidden py-24 lg:py-32">
+        <!-- === ENHANCED HERO SECTION === -->
+        <section id="hero" class="flex items-center justify-center animated-gradient rounded-2xl shadow-xl mb-16 overflow-hidden py-24 lg:py-32" data-aos="fade-up">
             <div class="container mx-auto px-6">
                 <div class="grid lg:grid-cols-2 gap-12 items-center">
-                    <div class="flex justify-center lg:justify-end">
+                    <div class="flex justify-center lg:justify-end" data-aos="zoom-in" data-aos-delay="200">
                         <div class="hero-image-frame p-3 bg-white/50 rounded-2xl shadow-2xl backdrop-blur-sm">
                             <img src="https://at8109.github.io/WhatsApp%20Image%202025-07-17%20at%2010.04.39%20PM.jpeg" alt="Abhay Tiwari Profile" class="rounded-xl w-64 h-64 md:w-80 md:h-80 object-cover">
                         </div>
                     </div>
                     <div class="text-center lg:text-left hero-content">
-                        <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 leading-tight mb-4">
+                        <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 leading-tight mb-4" data-aos="fade-right" data-aos-delay="300">
                             Abhay Tiwari
                         </h1>
-                        <p class="text-xl md:text-2xl text-teal-800 font-semibold mb-6 typing-text">
-                            Senior Software Engineer
+                        <p class="text-xl md:text-2xl text-teal-800 font-semibold mb-6" id="typed-text" data-aos="fade-right" data-aos-delay="400">
+                            <!-- Typed.js will populate this -->
                         </p>
-                        <p class="text-lg md:text-xl text-slate-700 mb-8 summary-text">
+                        <p class="text-lg md:text-xl text-slate-700 mb-8 summary-text" data-aos="fade-right" data-aos-delay="500">
                             With 7+ years of experience building scalable backend systems and intuitive frontends. Proficient in Java, Golang, Rust, and React, with strong expertise in microservices, data pipelines, and cloud-native deployments.
                         </p>
-                        <div class="space-x-4 button-group">
+                        <div class="space-x-4 button-group" data-aos="fade-up" data-aos-delay="600">
                             <a href="#contact" class="inline-block bg-gradient-to-r from-teal-500 to-cyan-600 text-white px-8 py-4 rounded-lg shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 font-semibold">
                                 Get in Touch
                             </a>
@@ -140,7 +373,29 @@
             </div>
         </section>
 
-        <section id="about" class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 mb-12 animate-fade-in">
+        <!-- === STATS SECTION === -->
+        <section class="mb-16" data-aos="fade-up">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="stats-card bg-white p-6 rounded-xl shadow-lg text-center">
+                    <div class="stats-counter" data-target="7">0</div>
+                    <p class="text-slate-600 font-medium">Years Experience</p>
+                </div>
+                <div class="stats-card bg-white p-6 rounded-xl shadow-lg text-center">
+                    <div class="stats-counter" data-target="4">0</div>
+                    <p class="text-slate-600 font-medium">Companies</p>
+                </div>
+                <div class="stats-card bg-white p-6 rounded-xl shadow-lg text-center">
+                    <div class="stats-counter" data-target="50">0</div>
+                    <p class="text-slate-600 font-medium">Projects+</p>
+                </div>
+                <div class="stats-card bg-white p-6 rounded-xl shadow-lg text-center">
+                    <div class="stats-counter" data-target="100">0</div>
+                    <p class="text-slate-600 font-medium">Satisfied Clients</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 mb-12 section-card" data-aos="fade-up">
             <h2 class="text-3xl font-bold text-slate-900 mb-6 text-center">About Me</h2>
             <div class="prose max-w-none text-slate-700">
                 <p>
@@ -158,7 +413,7 @@
             </div>
         </section>
 
-        <section id="skills" class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 mb-12 animate-fade-in">
+        <section id="skills" class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 mb-12 section-card" data-aos="fade-up">
             <h2 class="text-3xl font-bold text-slate-900 mb-8 text-center">Technical Skills</h2>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div class="w-full max-w-lg mx-auto">
@@ -289,10 +544,10 @@
             </div>
         </section>
 
-        <section id="projects" class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 mb-12 animate-fade-in">
+        <section id="projects" class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 mb-12 section-card" data-aos="fade-up">
             <h2 class="text-3xl font-bold text-slate-900 mb-6 text-center">Projects & Key Contributions</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-slate-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+                <div class="project-card bg-slate-50 p-6 rounded-lg shadow-sm" data-aos="zoom-in" data-aos-delay="100">
                     <h3 class="text-xl font-bold text-teal-700 mb-3">🚀 Large-Scale Data Pipeline for a Financial Services Client</h3>
                     <ul class="list-disc list-inside space-y-2 text-slate-700">
                         <li>Architected a scalable backend solution to extract and transform high-volume transaction data, supporting critical downstream processing and vendor integration.</li>
@@ -301,7 +556,7 @@
                         <li>Deployed the solution on a secure OpenShift cloud platform, integrating observability tools (Grafana, Splunk) and extending CI/CD pipelines for automated delivery.</li>
                     </ul>
                 </div>
-                <div class="bg-slate-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+                <div class="project-card bg-slate-50 p-6 rounded-lg shadow-sm" data-aos="zoom-in" data-aos-delay="200">
                     <h3 class="text-xl font-bold text-teal-700 mb-3">⚙️ Microservices & BPM Workflows for a Telecom Company</h3>
                     <ul class="list-disc list-inside space-y-2 text-slate-700">
                         <li>Developed and enhanced REST APIs and Activiti BPM workflows within a complex microservices architecture using Java, Spring Boot, React, and Kafka.</li>
@@ -309,14 +564,14 @@
                         <li>Drove the migration of microservices to containerized environments using Docker, Kubernetes, and Helm on an OpenShift platform.</li>
                     </ul>
                 </div>
-                <div class="bg-slate-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+                <div class="project-card bg-slate-50 p-6 rounded-lg shadow-sm" data-aos="zoom-in" data-aos-delay="300">
                     <h3 class="text-xl font-bold text-teal-700 mb-3">⏰ Employee Attendance Management System</h3>
                     <ul class="list-disc list-inside space-y-2 text-slate-700">
                         <li>Built a full-stack Attendance Management System using Golang, MongoDB, and a React frontend, deployed on AWS with Kubernetes.</li>
                         <li>Designed and implemented secure REST APIs for core functionalities including user authentication, attendance tracking, and data retrieval.</li>
                     </ul>
                 </div>
-                <div class="bg-slate-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+                <div class="project-card bg-slate-50 p-6 rounded-lg shadow-sm" data-aos="zoom-in" data-aos-delay="400">
                     <h3 class="text-xl font-bold text-teal-700 mb-3">🎓 Technical Training & Mentorship</h3>
                     <ul class="list-disc list-inside space-y-2 text-slate-700">
                         <li>As a Technical Screener and Trainer, developed curriculum and mentored junior developers in Java, JavaScript, React, Spring Boot, REST APIs, and DSA.</li>
@@ -326,7 +581,7 @@
             </div>
         </section>
 
-        <section id="certifications" class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 mb-12 animate-fade-in">
+        <section id="certifications" class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 mb-12 section-card" data-aos="fade-up">
             <h2 class="text-3xl font-bold text-slate-900 mb-6 text-center">Certifications & Credentials</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
@@ -335,6 +590,39 @@
                         <li>Java Certification - HackerRank</li>
                         <li>Problem Solving - HackerRank</li>
                         <li>JavaScript - HackerRank</li>
+                        <li>Learning Solid Programming Principles</li>
+                        <li>Golang Certifications: Certificate, Design Patterns, REST API</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-slate-800 mb-3">Coding Profiles & References</h3>
+                    <ul class="list-disc list-inside space-y-2 text-slate-700">
+                        <li><a href="https://www.hackerrank.com/profile/at8109" target="_blank" class="text-teal-600 hover:underline">HackerRank Profile</a></li>
+                        <li><a href="https://leetcode.com/u/AbhayTiwariFlex/" target="_blank" class="text-teal-600 hover:underline">LeetCode Profile</a></li>
+                        <li><strong>Professional references available upon request.</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 mb-12 text-center section-card" data-aos="fade-up">
+            <h2 class="text-3xl font-bold text-slate-900 mb-6">Get in Touch</h2>
+            <p class="text-lg text-slate-700 mb-4">
+                Feel free to reach out for collaborations, job opportunities, or just to say hello!
+            </p>
+            <div class="space-y-4">
+                <p class="text-xl text-slate-800">
+                    Email: <a href="mailto:abhaytiwari4330@gmail.com" class="text-teal-600 hover:underline">abhaytiwari4330@gmail.com</a>
+                </p>
+                <p class="text-xl text-slate-800">
+                    Phone: +91-7879404330
+                </p>
+                <p class="text-xl text-slate-800">
+                    LinkedIn: <a href="https://www.linkedin.com/in/abhaytiwari4330" target="_blank" class="text-teal-600 hover:underline">linkedin.com/in/abhaytiwari4330</a>
+                </p>
+            </div>
+        </section>
+    </main>ackerRank</li>
                         <li>Learning Solid Programming Principles</li>
                         <li>Golang Certifications: Certificate, Design Patterns, REST API</li>
                     </ul>
@@ -369,11 +657,183 @@
         </section>
     </main>
 
+    <!-- Floating Action Button -->
+    <div class="floating-action" onclick="openModal()">
+        <span class="material-icons">share</span>
+    </div>
+    
+    <!-- Modal -->
+    <div id="shareModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 style="color: #0d9488; margin-bottom: 20px;">Share Portfolio</h2>
+            <p style="margin-bottom: 20px;">Share this portfolio with others:</p>
+            <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                <button onclick="shareLinkedIn()" style="background: #0077b5; color: white; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer;">LinkedIn</button>
+                <button onclick="shareTwitter()" style="background: #1da1f2; color: white; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer;">Twitter</button>
+                <button onclick="copyLink()" style="background: #0d9488; color: white; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer;">Copy Link</button>
+                <button onclick="window.print()" style="background: #6b7280; color: white; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer;">Print</button>
+            </div>
+        </div>
+    </div>
+
     <footer class="bg-slate-800 text-white py-6 text-center">
         <p>© 2025 Abhay Tiwari. All rights reserved.</p>
     </footer>
 
     <script>
+        // Initialize AOS (Animate On Scroll)
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Initialize Particles.js
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: '#0d9488' },
+                shape: { type: 'circle' },
+                opacity: { value: 0.5, random: false },
+                size: { value: 3, random: true },
+                line_linked: { enable: true, distance: 150, color: '#0d9488', opacity: 0.4, width: 1 },
+                move: { enable: true, speed: 6, direction: 'none', random: false, straight: false, out_mode: 'out', bounce: false }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: true, mode: 'push' }, resize: true },
+                modes: { grab: { distance: 400, line_linked: { opacity: 1 } }, bubble: { distance: 400, size: 40, duration: 2, opacity: 8, speed: 3 }, repulse: { distance: 200, duration: 0.4 }, push: { particles_nb: 4 }, remove: { particles_nb: 2 } }
+            },
+            retina_detect: true
+        });
+
+        // Initialize Typed.js for typing effect
+        var typed = new Typed('#typed-text', {
+            strings: [
+                'Senior Software Engineer',
+                'Full Stack Developer',
+                'Backend Specialist',
+                'Cloud Architect',
+                'Technical Leader'
+            ],
+            typeSpeed: 50,
+            backSpeed: 30,
+            backDelay: 2000,
+            loop: true
+        });
+
+        // Progress Bar
+        window.addEventListener('scroll', () => {
+            const scrollTop = document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollPercent = (scrollTop / scrollHeight) * 100;
+            document.getElementById('progressBar').style.width = scrollPercent + '%';
+        });
+
+        // Animated Counter for Stats
+        function animateCounter(element, target, duration = 2000) {
+            let start = 0;
+            const increment = target / (duration / 16);
+            const timer = setInterval(() => {
+                start += increment;
+                if (start >= target) {
+                    element.textContent = target + (target === 50 || target === 100 ? '+' : '');
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(start) + (target === 50 || target === 100 ? '+' : '');
+                }
+            }, 16);
+        }
+
+        // Initialize counters when stats section is visible
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counters = entry.target.querySelectorAll('.stats-counter');
+                    counters.forEach(counter => {
+                        const target = parseInt(counter.getAttribute('data-target'));
+                        animateCounter(counter, target);
+                    });
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        const statsSection = document.querySelector('.stats-card').parentElement.parentElement;
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+
+        // Modal Functions
+        function openModal() {
+            document.getElementById('shareModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('shareModal').style.display = 'none';
+        }
+
+        function shareLinkedIn() {
+            const url = encodeURIComponent(window.location.href);
+            const text = encodeURIComponent('Check out Abhay Tiwari\'s professional portfolio');
+            window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}&title=${text}`, '_blank');
+        }
+
+        function shareTwitter() {
+            const url = encodeURIComponent(window.location.href);
+            const text = encodeURIComponent('Check out Abhay Tiwari\'s amazing portfolio - Senior Software Engineer with 7+ years experience');
+            window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank');
+        }
+
+        function copyLink() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                alert('Portfolio link copied to clipboard!');
+            });
+        }
+
+        // Make functions global
+        window.openModal = openModal;
+        window.closeModal = closeModal;
+        window.shareLinkedIn = shareLinkedIn;
+        window.shareTwitter = shareTwitter;
+        window.copyLink = copyLink;
+
+        // Enhanced Navigation
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section[id]');
+
+        // Update active nav link on scroll
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scroll for navigation links
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
         document.addEventListener('DOMContentLoaded', () => {
             const employmentData = [
                 { id: 'flexton1', name: 'Flexton Inc. (2018-2021)', start: '2018-04-02', end: '2021-06-04', color: 'rgba(13, 148, 136, 0.7)' },
