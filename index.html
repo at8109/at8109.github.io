@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abhay Tiwari - Interactive Employment History</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+    <!-- Chosen Palette: Calm Neutrals (Off-white background, slate gray text, muted teal accents) -->
+    <!-- Application Structure Plan: The application is structured as an interactive dashboard. At the top, a horizontal timeline chart provides a high-level visualization of the entire career path, showing the duration and overlap of each role. Below this, a tab-based navigation system allows users to select a specific role. Clicking a tab or a segment on the timeline reveals a detailed card for that employment period. This dual-navigation approach was chosen for usability: it allows users to either get a quick visual summary from the timeline or directly access detailed information via the tabs, supporting both exploratory and targeted information retrieval. -->
+    <!-- Visualization & Content Choices: 
+        Report Info: Complete career path. -> Goal: Show change/progression over time. -> Viz/Presentation Method: Interactive horizontal bar chart (timeline). -> Interaction: Clicking a bar segment filters the detailed view below. -> Justification: Provides an immediate, high-level visual summary of the entire employment history, making it easy to understand career progression. -> Library/Method: Chart.js (Canvas).
+        Report Info: Details for each job (dates, salary, location, etc.). -> Goal: Inform. -> Viz/Presentation Method: Thematic content cards. -> Interaction: Displayed/hidden based on tab or timeline selection. -> Justification: Organizes detailed information cleanly, preventing cognitive overload by presenting one role at a time in a structured format. -> Library/Method: HTML/CSS/Tailwind.
+        Report Info: Starting and Final Salary data. -> Goal: Inform. -> Viz/Presentation Method: Simple key-value pairs. -> Interaction: None. -> Justification: Presents specific financial data points clearly and directly as requested, without unnecessary complexity. -> Library/Method: HTML/CSS/Tailwind.
+        Report Info: Professional references. -> Goal: Organize. -> Viz/Presentation Method: Grouped list within a dedicated tabbed section. -> Interaction: None. -> Justification: Consolidates all contact information into a single, easily accessible location. -> Library/Method: HTML/CSS/Tailwind.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        @import url('https://rsms.me/inter/inter.css');
+        .tab-active {
+            border-color: #0d9488;
+            background-color: #f0fdfa;
+            color: #0d9488;
+            font-weight: 600;
+        }
+        .section-active {
+            display: block;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 250px;
+            max-height: 300px;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 300px;
+                max-height: 350px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-stone-50 text-slate-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+        <header class="text-center mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold text-slate-900">Abhay Tiwari</h1>
+            <p class="text-lg text-slate-600 mt-2">Professional Employment History</p>
+        </header>
+
+        <section id="timeline" class="mb-8 md:mb-12">
+             <div class="bg-white p-4 sm:p-6 rounded-xl shadow-sm border border-slate-200">
+                <h2 class="text-xl font-bold text-center mb-4 text-slate-700">Career Timeline</h2>
+                <div class="chart-container">
+                    <canvas id="timelineChart"></canvas>
+                </div>
+            </div>
+        </section>
+        
+        <main>
+            <div id="tabs" class="flex flex-wrap justify-center gap-2 md:gap-4 mb-8 border-b border-slate-200 pb-4">
+                <button data-target="cognizant" class="tab-btn px-4 py-2 text-sm md:text-base rounded-lg border-2 border-transparent transition-colors duration-300 hover:bg-teal-50 hover:text-teal-700">Cognizant</button>
+                <button data-target="flexton2" class="tab-btn px-4 py-2 text-sm md:text-base rounded-lg border-2 border-transparent transition-colors duration-300 hover:bg-teal-50 hover:text-teal-700">Flexton (2023-2024)</button>
+                <button data-target="amdocs" class="tab-btn px-4 py-2 text-sm md:text-base rounded-lg border-2 border-transparent transition-colors duration-300 hover:bg-teal-50 hover:text-teal-700">Amdocs</button>
+                <button data-target="flexton1" class="tab-btn px-4 py-2 text-sm md:text-base rounded-lg border-2 border-transparent transition-colors duration-300 hover:bg-teal-50 hover:text-teal-700">Flexton (2018-2021)</button>
+                <button data-target="references" class="tab-btn px-4 py-2 text-sm md:text-base rounded-lg border-2 border-transparent transition-colors duration-300 hover:bg-teal-50 hover:text-teal-700">References</button>
+            </div>
+
+            <div id="content" class="space-y-6">
+                <section id="cognizant" class="content-section hidden">
+                    <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 animate-fade-in">
+                        <div class="flex flex-col md:flex-row justify-between md:items-center border-b border-slate-200 pb-4 mb-6">
+                            <div>
+                                <h3 class="text-2xl font-bold text-teal-700">Cognizant Technology Solutions</h3>
+                                <p class="text-lg text-slate-600">Sr. Associate Projects (Client: American Express)</p>
+                            </div>
+                            <p class="text-md text-slate-500 mt-2 md:mt-0">Bengaluru, India</p>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <div class="bg-slate-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-slate-500 text-sm mb-1">Duration</h4>
+                                <p class="text-slate-800 font-medium">Sep 10, 2024 - Sep 12, 2025</p>
+                                <p class="text-slate-500 text-sm">(1 Year, 3 Days)</p>
+                            </div>
+                            <div class="bg-slate-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-slate-500 text-sm mb-1">Employee Code</h4>
+                                <p class="text-slate-800 font-medium">2364447</p>
+                            </div>
+                             <div class="bg-slate-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-slate-500 text-sm mb-1">Reason for Leaving</h4>
+                                <p class="text-slate-800 font-medium">Career Advancement</p>
+                            </div>
+                            <div class="bg-slate-50 p-4 rounded-lg md:col-span-2">
+                                <h4 class="font-semibold text-slate-500 text-sm mb-1">Starting Salary (Annual)</h4>
+                                <div class="flex space-x-4">
+                                     <p class="text-slate-800 font-medium"><strong>Total:</strong> ₹2,869,996</p>
+                                     <p class="text-slate-600"><strong>Fixed:</strong> ₹2,799,996</p>
+                                     <p class="text-slate-600"><strong>Variable:</strong> ₹70,000</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="flexton2" class="content-section hidden">
+                     <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 animate-fade-in">
+                        <div class="flex flex-col md:flex-row justify-between md:items-center border-b border-slate-200 pb-4 mb-6">
+                            <div>
+                                <h3 class="text-2xl font-bold text-teal-700">Flexton Inc.</h3>
+                                <p class="text-lg text-slate-600">Lead Technical Trainer & Interviewer</p>
+                            </div>
+                            <p class="text-md text-slate-500 mt-2 md:mt-0">Remote / Bhopal, India</p>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <div class="bg-slate-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-slate-500 text-sm mb-1">Duration</h4>
+                                <p class="text-slate-800 font-medium">Jul 10, 2023 - Sep 6, 2024</p>
+                                <p class="text-slate-500 text-sm">(1 Year, 1 Month, 28 Days)</p>
+                            </div>
+                            <div class="bg-slate-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-slate-500 text-sm mb-1">Employee Code</h4>
+                                <p class="text-slate-800 font-medium">20</p>
+                            </div>
+                             <div class="bg-slate-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-slate-500 text-sm mb-1">Reason for Leaving</h4>
+                                <p class="text-slate-800 font-medium">Career Advancement</p>
+                            </div>
+                            <div class="bg-slate-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-slate-500 text-sm mb-1">Starting Salary (Annual CTC)</h4>
+                                 <div class="flex space-x-4">
+                                     <p class="text-slate-800 font-medium"><strong>Total:</strong> ₹1,000,000</p>
+                                     <p class="text-slate-600"><strong>Fixed:</strong> ₹800,000</p>
+                                     <p class="text-slate-600"><strong>Variable:</strong> ₹200,000</p>
+                                </div>
+                            </div>
+                            <div class="bg-slate-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-slate-500 text-sm mb-1">Final Salary</h4>
+                                <p class="text-slate-800 font-medium">₹64,859</p>
+                                <p class="text-slate-500 text-sm">(Net Pay, Jul 2024)</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="amdocs" class="content-section hidden">
+                    <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 animate-fade-in">
+                        <div class="flex flex-col md:flex-row justify-between md:items-center border-b border-slate-200 pb-4 mb-6">
+                            <div>
+                                <h3 class="text-2xl font-bold text-teal-700">Amdocs Inc.</h3>
+                                <p class="text-lg text-slate-600">Software Developer</p>
+                            </div>
+                            <p class="text-md text-slate-500 mt-2 md:mt-0">Pune, India</p>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <div class="bg-slate-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-slate-500 text-sm mb-1">Duration</h4>
+                                <p class="text-slate-800 font-medium">Jun 3, 2021 - Apr 28, 2023</p>
+                                <p class="text-slate-500 text-sm">(1 Year, 10 Months, 26 Days)</p>
+                            </div>
+                            <div class="bg-slate-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-slate-500 text-sm mb-1">Employee Code</h4>
+                                <p class="text-slate-800 font-medium">179353</p>
+                            </div>
+                             <div class="bg-slate-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-slate-500 text-sm mb-1">Reason for Leaving</h4>
+                                <p class="text-slate-800 font-medium">Career Advancement</p>
+                            </div>
+                             <div class="bg-slate-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-slate-500 text-sm mb-1">Starting Salary (Annual)</h4>
+                                 <div class="flex space-x-4">
+                                     <p class="text-slate-800 font-medium"><strong>Total:</strong> ₹600,000</p>
+                                     <p class="text-slate-600"><strong>Fixed:</strong> ₹600,000</p>
+                                     <p class="text-slate-600"><strong>Variable:</strong> Annual Bonus Eligibility</p>
+                                </div>
+                            </div>
+                            <div class="bg-slate-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-slate-500 text-sm mb-1">Final Salary</h4>
+                                <p class="text-slate-800 font-medium">₹118,780.00</p>
+                                <p class="text-slate-500 text-sm">(Net Pay from Full & Final Settlement)</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="flexton1" class="content-section hidden">
+                     <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 animate-fade-in">
+                        <div class="flex flex-col md:flex-row justify-between md:items-center border-b border-slate-200 pb-4 mb-6">
+                            <div>
+                                <h3 class="text-2xl font-bold text-teal-700">Flexton Inc.</h3>
+                                <p class="text-lg text-slate-600">Technical Trainer</p>
+                            </div>
+                            <p class="text-md text-slate-500 mt-2 md:mt-0">Bhopal, India</p>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <div class="bg-slate-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-slate-500 text-sm mb-1">Duration</h4>
+                                <p class="text-slate-800 font-medium">Apr 2, 2018 - Jun 4, 2021</p>
+                                <p class="text-slate-500 text-sm">(3 Years, 2 Months, 3 Days)</p>
+                            </div>
+                            <div class="bg-slate-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-slate-500 text-sm mb-1">Employee Code</h4>
+                                <p class="text-slate-800 font-medium">20</p>
+                            </div>
+                             <div class="bg-slate-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-slate-500 text-sm mb-1">Reason for Leaving</h4>
+                                <p class="text-slate-800 font-medium">Career Advancement</p>
+                            </div>
+                            <div class="bg-slate-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-slate-500 text-sm mb-1">Starting Salary (Annual Gross)</h4>
+                                <div class="flex space-x-4">
+                                     <p class="text-slate-800 font-medium"><strong>Total:</strong> ₹180,000</p>
+                                     <p class="text-slate-600"><strong>Fixed:</strong> ₹180,000</p>
+                                     <p class="text-slate-600"><strong>Variable:</strong> ₹0</p>
+                                </div>
+                            </div>
+                            <div class="bg-slate-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-slate-500 text-sm mb-1">Final Salary</h4>
+                                <p class="text-slate-800 font-medium">₹65,834</p>
+                                <p class="text-slate-500 text-sm">(Gross Monthly including bonus, May 2021)</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="references" class="content-section hidden">
+                    <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 animate-fade-in">
+                        <h3 class="text-2xl font-bold text-teal-700 border-b border-slate-200 pb-4 mb-6">Professional References</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <div>
+                                <h4 class="text-lg font-semibold text-slate-800 mb-2">Cognizant</h4>
+                                <ul class="space-y-2 text-slate-600">
+                                    <li><strong>S. Rameshwar:</strong> Senior Project Manager - ADM AVM BFS Delivery <br><span class="text-sm text-teal-600">Rameshwar.S@cognizant.com</span></li>
+                                    <li><strong>Ajay Hegde:</strong> Manager - Projects, QEA BFS <br><span class="text-sm text-teal-600">Ajay.Hegde@cognizant.com</span></li>
+                                    <li><strong>Shiladitya Chatterjee:</strong> Engagement Delivery Lead - ADM AppDev BFS Delivery <br><span class="text-sm text-teal-600">Shiladitya.Chatterjee3@cognizant.com</span></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-slate-800 mb-2">Flexton Inc.</h4>
+                                <ul class="space-y-2 text-slate-600">
+                                    <li><strong>Prasun Mahapatra:</strong> SVP & Global Head of HR and Operations <br><span class="text-sm text-teal-600">prasun@flextoninc.com</span></li>
+                                    <li><strong>Ashish Aronkar:</strong> Account Manager <br><span class="text-sm text-teal-600">accounts2@flextoninc.com</span></li>
+                                    <li><strong>General HR:</strong> <span class="text-sm text-teal-600">hrflexton@flextoninc.com</span></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-slate-800 mb-2">Amdocs Inc.</h4>
+                                <ul class="space-y-2 text-slate-600">
+                                     <li><strong>Pravin Kumar Tyagi:</strong> Manager <br><span class="text-sm text-teal-600">Pravinkumar.Tyagi@amdocs.com</span></li>
+                                     <li><strong>Yukti Dwivedi:</strong> Scrum Master <br><span class="text-sm text-teal-600">Yukti.Dwivedi@amdocs.com</span></li>
+                                     <li><strong>Current HR Partner:</strong> <span class="text-sm text-teal-600">mayamai@amdocs.com</span></li>
+                                     <li><strong>Business Lead:</strong> <span class="text-sm text-teal-600">Shruti.Naidu@amdocs.com</span></li>
+                                     <li><strong>Joining HR:</strong> <span class="text-sm text-teal-600">Namrata.Tripathi@amdocs.com</span></li>
+                                     <li><strong>Exit & Relieving Contacts:</strong> <span class="text-sm text-teal-600">Riddhi.Gonjari@amdocs.com</span>, <span class="text-sm text-teal-600">CNAIR@amdocs.com</span>, <span class="text-sm text-teal-600">Sheetal.Wagh@amdocs.com</span>, <span class="text-sm text-teal-600">Ankita.Dussal@amdocs.com</span>, <span class="text-sm text-teal-600">nidhi.chaudhary@amdocs.com</span>, <span class="text-sm text-teal-600">sangramy@amdocs.com</span>, <span class="text-sm text-teal-600">avinash.gadekar@amdocs.com</span>, <span class="text-sm text-teal-600">mugdhar@amdocs.com</span></li>
+                                     <li><strong>Employment Verification:</strong> <span class="text-sm text-teal-600">EXEmployeeBGV@amdocs.com</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const employmentData = [
+                { id: 'flexton1', name: 'Flexton Inc.', start: '2018-04-02', end: '2021-06-04', color: 'rgba(13, 148, 136, 0.7)' },
+                { id: 'amdocs', name: 'Amdocs Inc.', start: '2021-06-03', end: '2023-04-28', color: 'rgba(15, 118, 110, 0.7)' },
+                { id: 'flexton2', name: 'Flexton Inc.', start: '2023-07-10', end: '2024-09-06', color: 'rgba(13, 148, 136, 0.7)' },
+                { id: 'cognizant', name: 'Cognizant', start: '2024-09-10', end: '2025-09-12', color: 'rgba(4, 120, 87, 0.7)' },
+            ];
+
+            const tabsContainer = document.getElementById('tabs');
+            const contentContainer = document.getElementById('content');
+            const tabButtons = tabsContainer.querySelectorAll('.tab-btn');
+            const contentSections = contentContainer.querySelectorAll('.content-section');
+
+            function showSection(targetId) {
+                tabButtons.forEach(btn => {
+                    btn.classList.toggle('tab-active', btn.dataset.target === targetId);
+                });
+                contentSections.forEach(section => {
+                    section.classList.toggle('hidden', section.id !== targetId);
+                    section.classList.toggle('section-active', section.id === targetId);
+                });
+            }
+
+            tabsContainer.addEventListener('click', (e) => {
+                if (e.target.matches('.tab-btn')) {
+                    const targetId = e.target.dataset.target;
+                    showSection(targetId);
+                }
+            });
+            
+            showSection('cognizant');
+
+            const timelineCtx = document.getElementById('timelineChart').getContext('2d');
+            const timelineChart = new Chart(timelineCtx, {
+                type: 'bar',
+                data: {
+                    labels: employmentData.map(d => d.name),
+                    datasets: [{
+                        label: 'Employment Duration',
+                        data: employmentData.map(d => [d.start, d.end]),
+                        backgroundColor: employmentData.map(d => d.color),
+                        barPercentage: 0.5,
+                        categoryPercentage: 0.8,
+                        borderRadius: 4,
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            type: 'time',
+                            time: {
+                                unit: 'year'
+                            },
+                            min: '2018-01-01',
+                            max: '2026-01-01',
+                            grid: {
+                                color: 'rgba(200, 200, 200, 0.1)',
+                            },
+                            ticks: {
+                                font: {
+                                    size: 10
+                                }
+                            }
+                        },
+                        y: {
+                            grid: {
+                                display: false
+                            },
+                             ticks: {
+                                font: {
+                                    size: 11
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const d = employmentData[context.dataIndex];
+                                    const startDate = new Date(d.start);
+                                    const endDate = new Date(d.end);
+                                    return `${d.name}: ${startDate.toLocaleDateString()} - ${endDate.toLocaleDateString()}`;
+                                }
+                            }
+                        }
+                    },
+                    onClick: (event, elements) => {
+                        if (elements.length > 0) {
+                            const dataIndex = elements[0].index;
+                            const targetId = employmentData[dataIndex].id;
+                            showSection(targetId);
+                            document.getElementById(targetId).scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
