@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
-    
+
     <!-- Advanced Libraries -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -18,16 +19,20 @@
         body {
             font-family: 'Inter', sans-serif;
         }
+
         @import url('https://rsms.me/inter/inter.css');
+
         .tab-active {
             border-color: #0d9488;
             background-color: #f0fdfa;
             color: #0d9488;
             font-weight: 600;
         }
+
         .section-active {
             display: block;
         }
+
         .chart-container {
             position: relative;
             width: 100%;
@@ -37,66 +42,121 @@
             height: 250px;
             max-height: 300px;
         }
+
         @media (max-width: 768px) {
             .chart-container {
                 height: 300px;
                 max-height: 350px;
             }
         }
+
         .nav-link.active {
             color: #0d9488;
             font-weight: 600;
         }
+
         .animate-fade-in {
             animation: fadeIn 1s ease-out forwards;
             opacity: 0;
         }
+
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
+
         .typing-text::after {
             content: '|';
             animation: blink-caret .75s step-end infinite;
         }
+
         @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: currentColor; }
+
+            from,
+            to {
+                border-color: transparent
+            }
+
+            50% {
+                border-color: currentColor;
+            }
         }
+
         .skill-tag {
             transition: all 0.3s ease;
         }
+
         .skill-tag:hover {
             transform: translateY(-3px);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
+
         @keyframes gradient-animation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
         }
+
         .animated-gradient {
             background: linear-gradient(-45deg, #e0f2f1, #d1e6e4, #b2dfdb, #a2d7d3);
             background-size: 400% 400%;
             animation: gradient-animation 15s ease infinite;
         }
+
         .hero-image-frame {
             animation: float 6s ease-in-out infinite;
         }
+
         @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
         }
-        .hero-content > * {
+
+        .hero-content>* {
             opacity: 0;
             animation: fadeIn 1s ease-out forwards;
         }
-        .hero-content h1 { animation-delay: 0.2s; }
-        .hero-content .typing-text { animation-delay: 0.4s; }
-        .hero-content .summary-text { animation-delay: 0.6s; }
-        .hero-content .button-group { animation-delay: 0.8s; }
-        
+
+        .hero-content h1 {
+            animation-delay: 0.2s;
+        }
+
+        .hero-content .typing-text {
+            animation-delay: 0.4s;
+        }
+
+        .hero-content .summary-text {
+            animation-delay: 0.6s;
+        }
+
+        .hero-content .button-group {
+            animation-delay: 0.8s;
+        }
+
         /* Advanced Animations & Effects */
         #particles-js {
             position: fixed;
@@ -106,7 +166,7 @@
             left: 0;
             z-index: -1;
         }
-        
+
         .progress-bar {
             position: fixed;
             top: 0;
@@ -117,7 +177,7 @@
             z-index: 9999;
             transition: width 0.3s ease;
         }
-        
+
         .floating-action {
             position: fixed;
             bottom: 30px;
@@ -136,19 +196,19 @@
             transition: all 0.3s ease;
             z-index: 1000;
         }
-        
+
         .floating-action:hover {
             transform: scale(1.1) rotate(10deg);
             box-shadow: 0 15px 35px rgba(13, 148, 136, 0.4);
         }
-        
+
         .skill-tag {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             position: relative;
             overflow: hidden;
         }
-        
+
         .skill-tag::before {
             content: '';
             position: absolute;
@@ -156,25 +216,25 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
             transition: left 0.5s;
         }
-        
+
         .skill-tag:hover::before {
             left: 100%;
         }
-        
+
         .skill-tag:hover {
             transform: translateY(-5px) scale(1.05);
             box-shadow: 0 10px 25px rgba(13, 148, 136, 0.2);
         }
-        
+
         .project-card {
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
         }
-        
+
         .project-card::before {
             content: '';
             position: absolute;
@@ -186,31 +246,31 @@
             opacity: 0;
             transition: opacity 0.3s ease;
         }
-        
+
         .project-card:hover::before {
             opacity: 1;
         }
-        
+
         .project-card:hover {
             transform: translateY(-10px) scale(1.02);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
         }
-        
+
         .section-card {
             transition: all 0.3s ease;
             position: relative;
         }
-        
+
         .section-card:hover {
             transform: translateY(-2px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
-        
+
         .nav-link {
             position: relative;
             transition: all 0.3s ease;
         }
-        
+
         .nav-link::after {
             content: '';
             position: absolute;
@@ -222,39 +282,47 @@
             transition: all 0.3s ease;
             transform: translateX(-50%);
         }
-        
+
         .nav-link:hover::after,
         .nav-link.active::after {
             width: 100%;
         }
-        
+
         .typing-effect {
             border-right: 2px solid #0d9488;
             animation: blink 1s infinite;
         }
-        
+
         @keyframes blink {
-            0%, 50% { border-color: #0d9488; }
-            51%, 100% { border-color: transparent; }
+
+            0%,
+            50% {
+                border-color: #0d9488;
+            }
+
+            51%,
+            100% {
+                border-color: transparent;
+            }
         }
-        
+
         .stats-counter {
             font-size: 2.5rem;
             font-weight: 700;
             color: #0d9488;
             transition: all 0.3s ease;
         }
-        
+
         .stats-card {
             transition: all 0.3s ease;
             cursor: pointer;
         }
-        
+
         .stats-card:hover {
             transform: translateY(-5px) scale(1.05);
             box-shadow: 0 15px 30px rgba(13, 148, 136, 0.2);
         }
-        
+
         .timeline-dot {
             width: 20px;
             height: 20px;
@@ -266,13 +334,21 @@
             box-shadow: 0 0 20px rgba(13, 148, 136, 0.5);
             animation: pulse 2s infinite;
         }
-        
+
         @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(13, 148, 136, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(13, 148, 136, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(13, 148, 136, 0); }
+            0% {
+                box-shadow: 0 0 0 0 rgba(13, 148, 136, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(13, 148, 136, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(13, 148, 136, 0);
+            }
         }
-        
+
         .modal {
             display: none;
             position: fixed;
@@ -280,11 +356,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0, 0, 0, 0.8);
             z-index: 2000;
             backdrop-filter: blur(10px);
         }
-        
+
         .modal-content {
             position: absolute;
             top: 50%;
@@ -298,12 +374,19 @@
             text-align: center;
             animation: modalSlideIn 0.3s ease;
         }
-        
+
         @keyframes modalSlideIn {
-            from { opacity: 0; transform: translate(-50%, -60%); }
-            to { opacity: 1; transform: translate(-50%, -50%); }
+            from {
+                opacity: 0;
+                transform: translate(-50%, -60%);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
         }
-        
+
         .close {
             position: absolute;
             top: 15px;
@@ -313,16 +396,17 @@
             color: #666;
             transition: color 0.3s ease;
         }
-        
+
         .close:hover {
             color: #0d9488;
         }
     </style>
 </head>
+
 <body class="bg-stone-50 text-slate-800">
     <!-- Progress Bar -->
     <div class="progress-bar" id="progressBar"></div>
-    
+
     <!-- Particle Background -->
     <div id="particles-js"></div>
 
@@ -330,41 +414,57 @@
         <nav class="container mx-auto px-4 py-3 flex justify-between items-center">
             <a href="#hero" class="text-xl font-bold text-slate-900">Abhay Tiwari</a>
             <div class="space-x-4 md:space-x-6">
-                <a href="#about" class="nav-link text-slate-600 hover:text-teal-700 transition-colors duration-300">About</a>
-                <a href="#skills" class="nav-link text-slate-600 hover:text-teal-700 transition-colors duration-300">Skills</a>
-                <a href="#experience" class="nav-link text-slate-600 hover:text-teal-700 transition-colors duration-300">Experience</a>
-                <a href="#projects" class="nav-link text-slate-600 hover:text-teal-700 transition-colors duration-300">Projects</a>
-                <a href="#certifications" class="nav-link text-slate-600 hover:text-teal-700 transition-colors duration-300">Certifications</a>
-                <a href="#contact" class="nav-link text-slate-600 hover:text-teal-700 transition-colors duration-300">Contact</a>
+                <a href="#about"
+                    class="nav-link text-slate-600 hover:text-teal-700 transition-colors duration-300">About</a>
+                <a href="#skills"
+                    class="nav-link text-slate-600 hover:text-teal-700 transition-colors duration-300">Skills</a>
+                <a href="#experience"
+                    class="nav-link text-slate-600 hover:text-teal-700 transition-colors duration-300">Experience</a>
+                <a href="#projects"
+                    class="nav-link text-slate-600 hover:text-teal-700 transition-colors duration-300">Projects</a>
+                <a href="#certifications"
+                    class="nav-link text-slate-600 hover:text-teal-700 transition-colors duration-300">Certifications</a>
+                <a href="#contact"
+                    class="nav-link text-slate-600 hover:text-teal-700 transition-colors duration-300">Contact</a>
             </div>
         </nav>
     </header>
 
     <main class="container mx-auto p-4 md:p-8">
         <!-- === ENHANCED HERO SECTION === -->
-        <section id="hero" class="flex items-center justify-center animated-gradient rounded-2xl shadow-xl mb-16 overflow-hidden py-24 lg:py-32" data-aos="fade-up">
+        <section id="hero"
+            class="flex items-center justify-center animated-gradient rounded-2xl shadow-xl mb-16 overflow-hidden py-24 lg:py-32"
+            data-aos="fade-up">
             <div class="container mx-auto px-6">
                 <div class="grid lg:grid-cols-2 gap-12 items-center">
                     <div class="flex justify-center lg:justify-end" data-aos="zoom-in" data-aos-delay="200">
                         <div class="hero-image-frame p-3 bg-white/50 rounded-2xl shadow-2xl backdrop-blur-sm">
-                            <img src="https://at8109.github.io/WhatsApp%20Image%202025-07-17%20at%2010.04.39%20PM.jpeg" alt="Abhay Tiwari Profile" class="rounded-xl w-64 h-64 md:w-80 md:h-80 object-cover">
+                            <img src="https://at8109.github.io/WhatsApp%20Image%202025-07-17%20at%2010.04.39%20PM.jpeg"
+                                alt="Abhay Tiwari Profile" class="rounded-xl w-64 h-64 md:w-80 md:h-80 object-cover">
                         </div>
                     </div>
                     <div class="text-center lg:text-left hero-content">
-                        <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 leading-tight mb-4" data-aos="fade-right" data-aos-delay="300">
+                        <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 leading-tight mb-4"
+                            data-aos="fade-right" data-aos-delay="300">
                             Abhay Tiwari
                         </h1>
-                        <p class="text-xl md:text-2xl text-teal-800 font-semibold mb-6" id="typed-text" data-aos="fade-right" data-aos-delay="400">
+                        <p class="text-xl md:text-2xl text-teal-800 font-semibold mb-6" id="typed-text"
+                            data-aos="fade-right" data-aos-delay="400">
                             <!-- Typed.js will populate this -->
                         </p>
-                        <p class="text-lg md:text-xl text-slate-700 mb-8 summary-text" data-aos="fade-right" data-aos-delay="500">
-                            With 7+ years of experience building scalable backend systems and intuitive frontends. Proficient in Java, Golang, Rust, and React, with strong expertise in microservices, data pipelines, and cloud-native deployments.
+                        <p class="text-lg md:text-xl text-slate-700 mb-8 summary-text" data-aos="fade-right"
+                            data-aos-delay="500">
+                            With 7+ years of experience building scalable backend systems and intuitive frontends.
+                            Proficient in Java, Golang, Rust, and React, with strong expertise in microservices, data
+                            pipelines, and cloud-native deployments.
                         </p>
                         <div class="space-x-4 button-group" data-aos="fade-up" data-aos-delay="600">
-                            <a href="#contact" class="inline-block bg-gradient-to-r from-teal-500 to-cyan-600 text-white px-8 py-4 rounded-lg shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 font-semibold">
+                            <a href="#contact"
+                                class="inline-block bg-gradient-to-r from-teal-500 to-cyan-600 text-white px-8 py-4 rounded-lg shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 font-semibold">
                                 Get in Touch
                             </a>
-                            <a href="#projects" class="inline-block border-2 border-teal-600 text-teal-700 px-6 py-3 rounded-lg hover:bg-white/50 transition-colors duration-300 font-semibold">
+                            <a href="#projects"
+                                class="inline-block border-2 border-teal-600 text-teal-700 px-6 py-3 rounded-lg hover:bg-white/50 transition-colors duration-300 font-semibold">
                                 View Projects
                             </a>
                         </div>
@@ -373,36 +473,22 @@
             </div>
         </section>
 
-        <!-- === STATS SECTION === -->
-        <section class="mb-16" data-aos="fade-up">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <div class="stats-card bg-white p-6 rounded-xl shadow-lg text-center">
-                    <div class="stats-counter" data-target="7">0</div>
-                    <p class="text-slate-600 font-medium">Years Experience</p>
-                </div>
-                <div class="stats-card bg-white p-6 rounded-xl shadow-lg text-center">
-                    <div class="stats-counter" data-target="4">0</div>
-                    <p class="text-slate-600 font-medium">Companies</p>
-                </div>
-                <div class="stats-card bg-white p-6 rounded-xl shadow-lg text-center">
-                    <div class="stats-counter" data-target="50">0</div>
-                    <p class="text-slate-600 font-medium">Projects+</p>
-                </div>
-                <div class="stats-card bg-white p-6 rounded-xl shadow-lg text-center">
-                    <div class="stats-counter" data-target="100">0</div>
-                    <p class="text-slate-600 font-medium">Satisfied Clients</p>
-                </div>
-            </div>
-        </section>
 
-        <section id="about" class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 mb-12 section-card" data-aos="fade-up">
+
+        <section id="about" class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 mb-12 section-card"
+            data-aos="fade-up">
             <h2 class="text-3xl font-bold text-slate-900 mb-6 text-center">About Me</h2>
             <div class="prose max-w-none text-slate-700">
                 <p>
-                    I am a passionate Senior Software Engineer with over 7 years of hands-on experience in crafting robust backend systems and engaging user interfaces. My expertise spans a variety of modern technologies and methodologies, enabling me to deliver high-performance, production-ready solutions.
+                    I am a passionate Senior Software Engineer with over 7 years of hands-on experience in crafting
+                    robust backend systems and engaging user interfaces. My expertise spans a variety of modern
+                    technologies and methodologies, enabling me to deliver high-performance, production-ready solutions.
                 </p>
                 <p>
-                    My journey in software development has equipped me with a deep understanding of microservices architectures, efficient data pipelines, and seamless cloud-native deployments. I am committed to applying best practices, including design patterns and SOLID principles, to ensure code quality, scalability, and maintainability.
+                    My journey in software development has equipped me with a deep understanding of microservices
+                    architectures, efficient data pipelines, and seamless cloud-native deployments. I am committed to
+                    applying best practices, including design patterns and SOLID principles, to ensure code quality,
+                    scalability, and maintainability.
                 </p>
                 <h3 class="text-xl font-semibold text-slate-800 mt-6 mb-3">Education</h3>
                 <ul class="list-disc list-inside space-y-2">
@@ -413,7 +499,8 @@
             </div>
         </section>
 
-        <section id="skills" class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 mb-12 section-card" data-aos="fade-up">
+        <section id="skills" class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 mb-12 section-card"
+            data-aos="fade-up">
             <h2 class="text-3xl font-bold text-slate-900 mb-8 text-center">Technical Skills</h2>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div class="w-full max-w-lg mx-auto">
@@ -424,41 +511,61 @@
                     <div>
                         <h3 class="text-xl font-semibold text-slate-800 mb-4">Web Technologies</h3>
                         <div class="flex flex-wrap gap-3">
-                            <span class="skill-tag bg-teal-100 text-teal-800 px-4 py-2 rounded-lg font-medium">React</span>
-                            <span class="skill-tag bg-teal-100 text-teal-800 px-4 py-2 rounded-lg font-medium">HTML & CSS</span>
-                            <span class="skill-tag bg-teal-100 text-teal-800 px-4 py-2 rounded-lg font-medium">RESTful APIs</span>
-                            <span class="skill-tag bg-teal-100 text-teal-800 px-4 py-2 rounded-lg font-medium">GraphQL</span>
-                            <span class="skill-tag bg-teal-100 text-teal-800 px-4 py-2 rounded-lg font-medium">gRPC</span>
+                            <span
+                                class="skill-tag bg-teal-100 text-teal-800 px-4 py-2 rounded-lg font-medium">React</span>
+                            <span class="skill-tag bg-teal-100 text-teal-800 px-4 py-2 rounded-lg font-medium">HTML &
+                                CSS</span>
+                            <span class="skill-tag bg-teal-100 text-teal-800 px-4 py-2 rounded-lg font-medium">RESTful
+                                APIs</span>
+                            <span
+                                class="skill-tag bg-teal-100 text-teal-800 px-4 py-2 rounded-lg font-medium">GraphQL</span>
+                            <span
+                                class="skill-tag bg-teal-100 text-teal-800 px-4 py-2 rounded-lg font-medium">gRPC</span>
                         </div>
                     </div>
                     <div>
                         <h3 class="text-xl font-semibold text-slate-800 mb-4">Frameworks</h3>
                         <div class="flex flex-wrap gap-3">
-                            <span class="skill-tag bg-slate-100 text-slate-800 px-4 py-2 rounded-lg font-medium">Spring Boot</span>
-                            <span class="skill-tag bg-slate-100 text-slate-800 px-4 py-2 rounded-lg font-medium">Hibernate</span>
-                            <span class="skill-tag bg-slate-100 text-slate-800 px-4 py-2 rounded-lg font-medium">Spring Data JPA</span>
-                            <span class="skill-tag bg-slate-100 text-slate-800 px-4 py-2 rounded-lg font-medium">Spring Cloud</span>
+                            <span class="skill-tag bg-slate-100 text-slate-800 px-4 py-2 rounded-lg font-medium">Spring
+                                Boot</span>
+                            <span
+                                class="skill-tag bg-slate-100 text-slate-800 px-4 py-2 rounded-lg font-medium">Hibernate</span>
+                            <span class="skill-tag bg-slate-100 text-slate-800 px-4 py-2 rounded-lg font-medium">Spring
+                                Data JPA</span>
+                            <span class="skill-tag bg-slate-100 text-slate-800 px-4 py-2 rounded-lg font-medium">Spring
+                                Cloud</span>
                         </div>
                     </div>
-                     <div>
+                    <div>
                         <h3 class="text-xl font-semibold text-slate-800 mb-4">Databases</h3>
                         <div class="flex flex-wrap gap-3">
-                            <span class="skill-tag bg-teal-100 text-teal-800 px-4 py-2 rounded-lg font-medium">MySQL</span>
-                            <span class="skill-tag bg-teal-100 text-teal-800 px-4 py-2 rounded-lg font-medium">PostgreSQL</span>
-                            <span class="skill-tag bg-teal-100 text-teal-800 px-4 py-2 rounded-lg font-medium">MongoDB</span>
-                            <span class="skill-tag bg-teal-100 text-teal-800 px-4 py-2 rounded-lg font-medium">DynamoDB</span>
-                            <span class="skill-tag bg-teal-100 text-teal-800 px-4 py-2 rounded-lg font-medium">Couchbase</span>
+                            <span
+                                class="skill-tag bg-teal-100 text-teal-800 px-4 py-2 rounded-lg font-medium">MySQL</span>
+                            <span
+                                class="skill-tag bg-teal-100 text-teal-800 px-4 py-2 rounded-lg font-medium">PostgreSQL</span>
+                            <span
+                                class="skill-tag bg-teal-100 text-teal-800 px-4 py-2 rounded-lg font-medium">MongoDB</span>
+                            <span
+                                class="skill-tag bg-teal-100 text-teal-800 px-4 py-2 rounded-lg font-medium">DynamoDB</span>
+                            <span
+                                class="skill-tag bg-teal-100 text-teal-800 px-4 py-2 rounded-lg font-medium">Couchbase</span>
                         </div>
                     </div>
                     <div>
                         <h3 class="text-xl font-semibold text-slate-800 mb-4">DevOps & Cloud</h3>
                         <div class="flex flex-wrap gap-3">
-                            <span class="skill-tag bg-slate-100 text-slate-800 px-4 py-2 rounded-lg font-medium">AWS</span>
-                            <span class="skill-tag bg-slate-100 text-slate-800 px-4 py-2 rounded-lg font-medium">Docker</span>
-                            <span class="skill-tag bg-slate-100 text-slate-800 px-4 py-2 rounded-lg font-medium">Kubernetes</span>
-                            <span class="skill-tag bg-slate-100 text-slate-800 px-4 py-2 rounded-lg font-medium">OpenShift</span>
-                            <span class="skill-tag bg-slate-100 text-slate-800 px-4 py-2 rounded-lg font-medium">Git</span>
-                            <span class="skill-tag bg-slate-100 text-slate-800 px-4 py-2 rounded-lg font-medium">Helm</span>
+                            <span
+                                class="skill-tag bg-slate-100 text-slate-800 px-4 py-2 rounded-lg font-medium">AWS</span>
+                            <span
+                                class="skill-tag bg-slate-100 text-slate-800 px-4 py-2 rounded-lg font-medium">Docker</span>
+                            <span
+                                class="skill-tag bg-slate-100 text-slate-800 px-4 py-2 rounded-lg font-medium">Kubernetes</span>
+                            <span
+                                class="skill-tag bg-slate-100 text-slate-800 px-4 py-2 rounded-lg font-medium">OpenShift</span>
+                            <span
+                                class="skill-tag bg-slate-100 text-slate-800 px-4 py-2 rounded-lg font-medium">Git</span>
+                            <span
+                                class="skill-tag bg-slate-100 text-slate-800 px-4 py-2 rounded-lg font-medium">Helm</span>
                         </div>
                     </div>
                 </div>
@@ -473,12 +580,18 @@
                     <canvas id="timelineChart"></canvas>
                 </div>
             </div>
-            
+
             <div id="tabs" class="flex flex-wrap justify-center gap-2 md:gap-4 mb-8 border-b border-slate-200 pb-4">
-                <button data-target="cognizant" class="tab-btn px-4 py-2 text-sm md:text-base rounded-lg border-2 border-transparent transition-colors duration-300 hover:bg-teal-50 hover:text-teal-700">Cognizant</button>
-                <button data-target="flexton2" class="tab-btn px-4 py-2 text-sm md:text-base rounded-lg border-2 border-transparent transition-colors duration-300 hover:bg-teal-50 hover:text-teal-700">Flexton Inc. (2023-2024)</button>
-                <button data-target="amdocs" class="tab-btn px-4 py-2 text-sm md:text-base rounded-lg border-2 border-transparent transition-colors duration-300 hover:bg-teal-50 hover:text-teal-700">Amdocs</button>
-                <button data-target="flexton1" class="tab-btn px-4 py-2 text-sm md:text-base rounded-lg border-2 border-transparent transition-colors duration-300 hover:bg-teal-50 hover:text-teal-700">Flexton Inc. (2018-2021)</button>
+                <button data-target="cognizant"
+                    class="tab-btn px-4 py-2 text-sm md:text-base rounded-lg border-2 border-transparent transition-colors duration-300 hover:bg-teal-50 hover:text-teal-700">Cognizant</button>
+                <button data-target="flexton2"
+                    class="tab-btn px-4 py-2 text-sm md:text-base rounded-lg border-2 border-transparent transition-colors duration-300 hover:bg-teal-50 hover:text-teal-700">Flexton
+                    Inc. (2023-2024)</button>
+                <button data-target="amdocs"
+                    class="tab-btn px-4 py-2 text-sm md:text-base rounded-lg border-2 border-transparent transition-colors duration-300 hover:bg-teal-50 hover:text-teal-700">Amdocs</button>
+                <button data-target="flexton1"
+                    class="tab-btn px-4 py-2 text-sm md:text-base rounded-lg border-2 border-transparent transition-colors duration-300 hover:bg-teal-50 hover:text-teal-700">Flexton
+                    Inc. (2018-2021)</button>
             </div>
 
             <div id="content" class="space-y-6">
@@ -498,7 +611,7 @@
                 </section>
 
                 <section id="flexton2" class="content-section hidden">
-                     <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200">
+                    <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200">
                         <div class="flex flex-col md:flex-row justify-between md:items-center">
                             <div>
                                 <h3 class="text-2xl font-bold text-teal-700">Flexton Inc.</h3>
@@ -519,16 +632,16 @@
                                 <h3 class="text-2xl font-bold text-teal-700">Amdocs Inc.</h3>
                                 <p class="text-lg text-slate-600">Software Developer</p>
                             </div>
-                           <div class="text-md text-slate-500 mt-2 md:mt-0 text-left md:text-right">
+                            <div class="text-md text-slate-500 mt-2 md:mt-0 text-left md:text-right">
                                 <p>Jun 2021 - Apr 2023</p>
                                 <p>Pune, India</p>
-                           </div>
+                            </div>
                         </div>
                     </div>
                 </section>
 
                 <section id="flexton1" class="content-section hidden">
-                     <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200">
+                    <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200">
                         <div class="flex flex-col md:flex-row justify-between md:items-center">
                             <div>
                                 <h3 class="text-2xl font-bold text-teal-700">Flexton Inc.</h3>
@@ -544,44 +657,61 @@
             </div>
         </section>
 
-        <section id="projects" class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 mb-12 section-card" data-aos="fade-up">
+        <section id="projects"
+            class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 mb-12 section-card"
+            data-aos="fade-up">
             <h2 class="text-3xl font-bold text-slate-900 mb-6 text-center">Projects & Key Contributions</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div class="project-card bg-slate-50 p-6 rounded-lg shadow-sm" data-aos="zoom-in" data-aos-delay="100">
-                    <h3 class="text-xl font-bold text-teal-700 mb-3">🚀 Large-Scale Data Pipeline for a Financial Services Client</h3>
+                    <h3 class="text-xl font-bold text-teal-700 mb-3">🚀 Large-Scale Data Pipeline for a Financial
+                        Services Client</h3>
                     <ul class="list-disc list-inside space-y-2 text-slate-700">
-                        <li>Architected a scalable backend solution to extract and transform high-volume transaction data, supporting critical downstream processing and vendor integration.</li>
-                        <li>Implemented an end-to-end Golang data pipeline using goroutines, worker pools, and waitgroups for efficient parallel processing of millions of records.</li>
-                        <li>Utilized PostgreSQL with pgxpool/pgxbatch for high-throughput data access, designing optimized CTEs and batch operations.</li>
-                        <li>Deployed the solution on a secure OpenShift cloud platform, integrating observability tools (Grafana, Splunk) and extending CI/CD pipelines for automated delivery.</li>
+                        <li>Architected a scalable backend solution to extract and transform high-volume transaction
+                            data, supporting critical downstream processing and vendor integration.</li>
+                        <li>Implemented an end-to-end Golang data pipeline using goroutines, worker pools, and
+                            waitgroups for efficient parallel processing of millions of records.</li>
+                        <li>Utilized PostgreSQL with pgxpool/pgxbatch for high-throughput data access, designing
+                            optimized CTEs and batch operations.</li>
+                        <li>Deployed the solution on a secure OpenShift cloud platform, integrating observability tools
+                            (Grafana, Splunk) and extending CI/CD pipelines for automated delivery.</li>
                     </ul>
                 </div>
                 <div class="project-card bg-slate-50 p-6 rounded-lg shadow-sm" data-aos="zoom-in" data-aos-delay="200">
-                    <h3 class="text-xl font-bold text-teal-700 mb-3">⚙️ Microservices & BPM Workflows for a Telecom Company</h3>
+                    <h3 class="text-xl font-bold text-teal-700 mb-3">⚙️ Microservices & BPM Workflows for a Telecom
+                        Company</h3>
                     <ul class="list-disc list-inside space-y-2 text-slate-700">
-                        <li>Developed and enhanced REST APIs and Activiti BPM workflows within a complex microservices architecture using Java, Spring Boot, React, and Kafka.</li>
-                        <li>Led customization of key features including product cloning, proposal management, and role-based API authorization.</li>
-                        <li>Drove the migration of microservices to containerized environments using Docker, Kubernetes, and Helm on an OpenShift platform.</li>
+                        <li>Developed and enhanced REST APIs and Activiti BPM workflows within a complex microservices
+                            architecture using Java, Spring Boot, React, and Kafka.</li>
+                        <li>Led customization of key features including product cloning, proposal management, and
+                            role-based API authorization.</li>
+                        <li>Drove the migration of microservices to containerized environments using Docker, Kubernetes,
+                            and Helm on an OpenShift platform.</li>
                     </ul>
                 </div>
                 <div class="project-card bg-slate-50 p-6 rounded-lg shadow-sm" data-aos="zoom-in" data-aos-delay="300">
                     <h3 class="text-xl font-bold text-teal-700 mb-3">⏰ Employee Attendance Management System</h3>
                     <ul class="list-disc list-inside space-y-2 text-slate-700">
-                        <li>Built a full-stack Attendance Management System using Golang, MongoDB, and a React frontend, deployed on AWS with Kubernetes.</li>
-                        <li>Designed and implemented secure REST APIs for core functionalities including user authentication, attendance tracking, and data retrieval.</li>
+                        <li>Built a full-stack Attendance Management System using Golang, MongoDB, and a React frontend,
+                            deployed on AWS with Kubernetes.</li>
+                        <li>Designed and implemented secure REST APIs for core functionalities including user
+                            authentication, attendance tracking, and data retrieval.</li>
                     </ul>
                 </div>
                 <div class="project-card bg-slate-50 p-6 rounded-lg shadow-sm" data-aos="zoom-in" data-aos-delay="400">
                     <h3 class="text-xl font-bold text-teal-700 mb-3">🎓 Technical Training & Mentorship</h3>
                     <ul class="list-disc list-inside space-y-2 text-slate-700">
-                        <li>As a Technical Screener and Trainer, developed curriculum and mentored junior developers in Java, JavaScript, React, Spring Boot, REST APIs, and DSA.</li>
-                        <li>Conducted technical interviews and provided constructive feedback to candidates, improving the quality of technical hiring.</li>
+                        <li>As a Technical Screener and Trainer, developed curriculum and mentored junior developers in
+                            Java, JavaScript, React, Spring Boot, REST APIs, and DSA.</li>
+                        <li>Conducted technical interviews and provided constructive feedback to candidates, improving
+                            the quality of technical hiring.</li>
                     </ul>
                 </div>
             </div>
         </section>
 
-        <section id="certifications" class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 mb-12 section-card" data-aos="fade-up">
+        <section id="certifications"
+            class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 mb-12 section-card"
+            data-aos="fade-up">
             <h2 class="text-3xl font-bold text-slate-900 mb-6 text-center">Certifications & Credentials</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
@@ -597,71 +727,82 @@
                 <div>
                     <h3 class="text-xl font-semibold text-slate-800 mb-3">Coding Profiles & References</h3>
                     <ul class="list-disc list-inside space-y-2 text-slate-700">
-                        <li><a href="https://www.hackerrank.com/profile/at8109" target="_blank" class="text-teal-600 hover:underline">HackerRank Profile</a></li>
-                        <li><a href="https://leetcode.com/u/AbhayTiwariFlex/" target="_blank" class="text-teal-600 hover:underline">LeetCode Profile</a></li>
+                        <li><a href="https://www.hackerrank.com/profile/at8109" target="_blank"
+                                class="text-teal-600 hover:underline">HackerRank Profile</a></li>
+                        <li><a href="https://leetcode.com/u/AbhayTiwariFlex/" target="_blank"
+                                class="text-teal-600 hover:underline">LeetCode Profile</a></li>
                         <li><strong>Professional references available upon request.</strong></li>
                     </ul>
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 mb-12 text-center section-card" data-aos="fade-up">
+        <section id="contact"
+            class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 mb-12 text-center section-card"
+            data-aos="fade-up">
             <h2 class="text-3xl font-bold text-slate-900 mb-6">Get in Touch</h2>
             <p class="text-lg text-slate-700 mb-4">
                 Feel free to reach out for collaborations, job opportunities, or just to say hello!
             </p>
             <div class="space-y-4">
                 <p class="text-xl text-slate-800">
-                    Email: <a href="mailto:abhaytiwari4330@gmail.com" class="text-teal-600 hover:underline">abhaytiwari4330@gmail.com</a>
+                    Email: <a href="mailto:abhaytiwari4330@gmail.com"
+                        class="text-teal-600 hover:underline">abhaytiwari4330@gmail.com</a>
                 </p>
                 <p class="text-xl text-slate-800">
                     Phone: +91-7879404330
                 </p>
                 <p class="text-xl text-slate-800">
-                    LinkedIn: <a href="https://www.linkedin.com/in/abhaytiwari4330" target="_blank" class="text-teal-600 hover:underline">linkedin.com/in/abhaytiwari4330</a>
+                    LinkedIn: <a href="https://www.linkedin.com/in/abhaytiwari4330" target="_blank"
+                        class="text-teal-600 hover:underline">linkedin.com/in/abhaytiwari4330</a>
                 </p>
             </div>
         </section>
     </main>ackerRank</li>
-                        <li>Learning Solid Programming Principles</li>
-                        <li>Golang Certifications: Certificate, Design Patterns, REST API</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-xl font-semibold text-slate-800 mb-3">Coding Profiles & References</h3>
-                    <ul class="list-disc list-inside space-y-2 text-slate-700">
-                        <li><a href="https://www.hackerrank.com/profile/at8109" target="_blank" class="text-teal-600 hover:underline">HackerRank Profile</a></li>
-                        <li><a href="https://leetcode.com/u/AbhayTiwariFlex/" target="_blank" class="text-teal-600 hover:underline">LeetCode Profile</a></li>
-                        <li><strong>Professional references available upon request.</strong></li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+    <li>Learning Solid Programming Principles</li>
+    <li>Golang Certifications: Certificate, Design Patterns, REST API</li>
+    </ul>
+    </div>
+    <div>
+        <h3 class="text-xl font-semibold text-slate-800 mb-3">Coding Profiles & References</h3>
+        <ul class="list-disc list-inside space-y-2 text-slate-700">
+            <li><a href="https://www.hackerrank.com/profile/at8109" target="_blank"
+                    class="text-teal-600 hover:underline">HackerRank Profile</a></li>
+            <li><a href="https://leetcode.com/u/AbhayTiwariFlex/" target="_blank"
+                    class="text-teal-600 hover:underline">LeetCode Profile</a></li>
+            <li><strong>Professional references available upon request.</strong></li>
+        </ul>
+    </div>
+    </div>
+    </section>
 
-        <section id="contact" class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 mb-12 text-center animate-fade-in">
-            <h2 class="text-3xl font-bold text-slate-900 mb-6">Get in Touch</h2>
-            <p class="text-lg text-slate-700 mb-4">
-                Feel free to reach out for collaborations, job opportunities, or just to say hello!
+    <section id="contact"
+        class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 mb-12 text-center animate-fade-in">
+        <h2 class="text-3xl font-bold text-slate-900 mb-6">Get in Touch</h2>
+        <p class="text-lg text-slate-700 mb-4">
+            Feel free to reach out for collaborations, job opportunities, or just to say hello!
+        </p>
+        <div class="space-y-4">
+            <p class="text-xl text-slate-800">
+                Email: <a href="mailto:abhaytiwari4330@gmail.com"
+                    class="text-teal-600 hover:underline">abhaytiwari4330@gmail.com</a>
             </p>
-            <div class="space-y-4">
-                <p class="text-xl text-slate-800">
-                    Email: <a href="mailto:abhaytiwari4330@gmail.com" class="text-teal-600 hover:underline">abhaytiwari4330@gmail.com</a>
-                </p>
-                <p class="text-xl text-slate-800">
-                    Phone: +91-7879404330
-                </p>
-                <p class="text-xl text-slate-800">
-                    LinkedIn: <a href="https://www.linkedin.com/in/abhaytiwari4330" target="_blank" class="text-teal-600 hover:underline">linkedin.com/in/abhaytiwari4330</a>
-                </p>
-            </div>
-        </section>
+            <p class="text-xl text-slate-800">
+                Phone: +91-7879404330
+            </p>
+            <p class="text-xl text-slate-800">
+                LinkedIn: <a href="https://www.linkedin.com/in/abhaytiwari4330" target="_blank"
+                    class="text-teal-600 hover:underline">linkedin.com/in/abhaytiwari4330</a>
+            </p>
+        </div>
+    </section>
     </main>
 
     <!-- Floating Action Button -->
     <div class="floating-action" onclick="openModal()">
         <span class="material-icons">share</span>
     </div>
-    
+
     <!-- Modal -->
     <div id="shareModal" class="modal">
         <div class="modal-content">
@@ -669,10 +810,15 @@
             <h2 style="color: #0d9488; margin-bottom: 20px;">Share Portfolio</h2>
             <p style="margin-bottom: 20px;">Share this portfolio with others:</p>
             <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
-                <button onclick="shareLinkedIn()" style="background: #0077b5; color: white; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer;">LinkedIn</button>
-                <button onclick="shareTwitter()" style="background: #1da1f2; color: white; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer;">Twitter</button>
-                <button onclick="copyLink()" style="background: #0d9488; color: white; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer;">Copy Link</button>
-                <button onclick="window.print()" style="background: #6b7280; color: white; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer;">Print</button>
+                <button onclick="shareLinkedIn()"
+                    style="background: #0077b5; color: white; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer;">LinkedIn</button>
+                <button onclick="shareTwitter()"
+                    style="background: #1da1f2; color: white; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer;">Twitter</button>
+                <button onclick="copyLink()"
+                    style="background: #0d9488; color: white; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer;">Copy
+                    Link</button>
+                <button onclick="window.print()"
+                    style="background: #6b7280; color: white; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer;">Print</button>
             </div>
         </div>
     </div>
@@ -864,7 +1010,7 @@
                     showSection(targetId);
                 }
             });
-            
+
             showSection('cognizant');
 
             const timelineCtx = document.getElementById('timelineChart').getContext('2d');
@@ -898,14 +1044,14 @@
                         },
                         y: {
                             grid: { display: false },
-                             ticks: { font: { size: 11 } }
+                            ticks: { font: { size: 11 } }
                         }
                     },
                     plugins: {
                         legend: { display: false },
                         tooltip: {
                             callbacks: {
-                                label: function(context) {
+                                label: function (context) {
                                     const d = employmentData[context.dataIndex];
                                     const startDate = new Date(d.start);
                                     const endDate = new Date(d.end);
@@ -924,7 +1070,7 @@
                     }
                 }
             });
-            
+
             const radarCtx = document.getElementById('skillsRadarChart').getContext('2d');
             new Chart(radarCtx, {
                 type: 'radar',
@@ -969,7 +1115,7 @@
             });
 
             navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
+                link.addEventListener('click', function (e) {
                     e.preventDefault();
                     document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
                 });
@@ -1001,4 +1147,5 @@
         });
     </script>
 </body>
+
 </html>
