@@ -67,6 +67,14 @@
             from, to { border-color: transparent }
             50% { border-color: currentColor; }
         }
+        /* New Skill Tag styles */
+        .skill-tag {
+            transition: all 0.3s ease;
+        }
+        .skill-tag:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
 <body class="bg-stone-50 text-slate-800">
@@ -89,7 +97,6 @@
         <!-- Hero Section -->
         <section id="hero" class="min-h-screen flex items-center justify-center text-center bg-gradient-to-br from-teal-50 to-stone-100 rounded-xl shadow-lg mb-12">
             <div class="max-w-3xl px-4 py-16">
-                <!-- === IMAGE PATH UPDATED HERE === -->
                 <img src="https://at8109.github.io/WhatsApp%20Image%202025-07-17%20at%2010.04.39%20PM.jpeg" alt="Abhay Tiwari Profile" class="rounded-full mx-auto mb-6 shadow-md w-40 h-40 object-cover">
                 <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 leading-tight mb-4">
                     Abhay Tiwari
@@ -126,109 +133,61 @@
             </div>
         </section>
 
-        <!-- Skills Section -->
+        <!-- === SKILLS SECTION UPDATED === -->
         <section id="skills" class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 mb-12 animate-fade-in">
-            <h2 class="text-3xl font-bold text-slate-900 mb-6 text-center">Skills</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Programming Languages -->
-                <div>
-                    <h3 class="text-xl font-semibold text-slate-800 mb-3">Programming Languages</h3>
-                    <ul class="space-y-3">
-                        <li class="flex items-center">
-                            <span class="w-24 font-medium text-slate-700">Java</span>
-                            <div class="flex-1 bg-gray-200 rounded-full h-2.5">
-                                <div class="bg-teal-600 h-2.5 rounded-full" style="width: 90%;"></div>
-                            </div>
-                        </li>
-                        <li class="flex items-center">
-                            <span class="w-24 font-medium text-slate-700">JavaScript</span>
-                            <div class="flex-1 bg-gray-200 rounded-full h-2.5">
-                                <div class="bg-teal-600 h-2.5 rounded-full" style="width: 85%;"></div>
-                            </div>
-                        </li>
-                        <li class="flex items-center">
-                            <span class="w-24 font-medium text-slate-700">Golang</span>
-                            <div class="flex-1 bg-gray-200 rounded-full h-2.5">
-                                <div class="bg-teal-600 h-2.5 rounded-full" style="width: 80%;"></div>
-                            </div>
-                        </li>
-                        <li class="flex items-center">
-                            <span class="w-24 font-medium text-slate-700">Rust</span>
-                            <div class="flex-1 bg-gray-200 rounded-full h-2.5">
-                                <div class="bg-teal-600 h-2.5 rounded-full" style="width: 70%;"></div>
-                            </div>
-                        </li>
-                    </ul>
+            <h2 class="text-3xl font-bold text-slate-900 mb-8 text-center">Technical Skills</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Left Column: Radar Chart -->
+                <div class="w-full max-w-lg mx-auto">
+                    <h3 class="text-2xl font-semibold text-slate-800 mb-4 text-center">Language Proficiency</h3>
+                    <canvas id="skillsRadarChart"></canvas>
                 </div>
-                <!-- Web Technologies -->
-                <div>
-                    <h3 class="text-xl font-semibold text-slate-800 mb-3">Web Technologies</h3>
-                    <ul class="space-y-2 text-slate-700">
-                        <li>React</li>
-                        <li>HTML</li>
-                        <li>CSS</li>
-                        <li>Restful Web Services</li>
-                        <li>GraphQL</li>
-                        <li>gRPC</li>
-                    </ul>
-                </div>
-                <!-- Frameworks -->
-                <div>
-                    <h3 class="text-xl font-semibold text-slate-800 mb-3">Frameworks</h3>
-                    <ul class="space-y-2 text-slate-700">
-                        <li>Spring Boot</li>
-                        <li>Hibernate</li>
-                        <li>Spring Data JPA</li>
-                        <li>Spring Cloud</li>
-                    </ul>
-                </div>
-                <!-- Databases -->
-                <div>
-                    <h3 class="text-xl font-semibold text-slate-800 mb-3">Databases</h3>
-                    <ul class="space-y-2 text-slate-700">
-                        <li>MYSQL</li>
-                        <li>PostgreSQL</li>
-                        <li>MongoDB</li>
-                        <li>DynamoDB</li>
-                        <li>Couchbase</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-xl font-semibold text-slate-800 mb-3">Cloud Technologies</h3>
-                    <ul class="space-y-2 text-slate-700">
-                        <li>OpenShift Cloud Platform</li>
-                        <li>AWS - S3, EC2, Dynamo DB, Firebase</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-xl font-semibold text-slate-800 mb-3">DevOps & Version Control</h3>
-                    <ul class="space-y-2 text-slate-700">
-                        <li>Kubernetes</li>
-                        <li>Docker</li>
-                        <li>Helm</li>
-                        <li>Git</li>
-                        <li>BitBucket</li>
-                        <li>Perforce</li>
-                    </ul>
-                </div>
-                <div class="lg:col-span-3">
-                    <h3 class="text-xl font-semibold text-slate-800 mb-3">Tools & Technologies</h3>
-                    <ul class="list-disc list-inside space-y-2 text-slate-700">
-                        <li>Apache Kafka</li>
-                        <li>Swagger OPEN API Specification</li>
-                        <li>Elasticsearch</li>
-                        <li>Kibana</li>
-                        <li>SLF4J</li>
-                        <li>Maven</li>
-                        <li>Postman</li>
-                        <li>IntelliJ</li>
-                        <li>Visual Studio Code</li>
-                        <li>Eclipse</li>
-                        <li>Activiti BPMN</li>
-                    </ul>
+                <!-- Right Column: Skill Tags -->
+                <div class="space-y-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-slate-800 mb-4">Web Technologies</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="skill-tag bg-teal-100 text-teal-800 px-4 py-2 rounded-lg font-medium">React</span>
+                            <span class="skill-tag bg-teal-100 text-teal-800 px-4 py-2 rounded-lg font-medium">HTML & CSS</span>
+                            <span class="skill-tag bg-teal-100 text-teal-800 px-4 py-2 rounded-lg font-medium">RESTful APIs</span>
+                            <span class="skill-tag bg-teal-100 text-teal-800 px-4 py-2 rounded-lg font-medium">GraphQL</span>
+                            <span class="skill-tag bg-teal-100 text-teal-800 px-4 py-2 rounded-lg font-medium">gRPC</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-slate-800 mb-4">Frameworks</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="skill-tag bg-slate-100 text-slate-800 px-4 py-2 rounded-lg font-medium">Spring Boot</span>
+                            <span class="skill-tag bg-slate-100 text-slate-800 px-4 py-2 rounded-lg font-medium">Hibernate</span>
+                            <span class="skill-tag bg-slate-100 text-slate-800 px-4 py-2 rounded-lg font-medium">Spring Data JPA</span>
+                            <span class="skill-tag bg-slate-100 text-slate-800 px-4 py-2 rounded-lg font-medium">Spring Cloud</span>
+                        </div>
+                    </div>
+                     <div>
+                        <h3 class="text-xl font-semibold text-slate-800 mb-4">Databases</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="skill-tag bg-teal-100 text-teal-800 px-4 py-2 rounded-lg font-medium">MySQL</span>
+                            <span class="skill-tag bg-teal-100 text-teal-800 px-4 py-2 rounded-lg font-medium">PostgreSQL</span>
+                            <span class="skill-tag bg-teal-100 text-teal-800 px-4 py-2 rounded-lg font-medium">MongoDB</span>
+                            <span class="skill-tag bg-teal-100 text-teal-800 px-4 py-2 rounded-lg font-medium">DynamoDB</span>
+                            <span class="skill-tag bg-teal-100 text-teal-800 px-4 py-2 rounded-lg font-medium">Couchbase</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-slate-800 mb-4">DevOps & Cloud</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="skill-tag bg-slate-100 text-slate-800 px-4 py-2 rounded-lg font-medium">AWS</span>
+                            <span class="skill-tag bg-slate-100 text-slate-800 px-4 py-2 rounded-lg font-medium">Docker</span>
+                            <span class="skill-tag bg-slate-100 text-slate-800 px-4 py-2 rounded-lg font-medium">Kubernetes</span>
+                            <span class="skill-tag bg-slate-100 text-slate-800 px-4 py-2 rounded-lg font-medium">OpenShift</span>
+                            <span class="skill-tag bg-slate-100 text-slate-800 px-4 py-2 rounded-lg font-medium">Git</span>
+                            <span class="skill-tag bg-slate-100 text-slate-800 px-4 py-2 rounded-lg font-medium">Helm</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
+
 
         <!-- Experience Section -->
         <section id="experience" class="mb-12 animate-fade-in">
@@ -336,7 +295,7 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             <div class="bg-slate-50 p-4 rounded-lg">
                                 <h4 class="font-semibold text-slate-500 text-sm mb-1">Duration</h4>
-                                <p class="text-slate-800 font-medium">Jun 3, 2021 - Apr 28, 2023</p>
+                                <p class="text-slate-800 font-medium">Jun 3, 2018 - Apr 28, 2023</p>
                                 <p class="text-slate-500 text-sm">(1 Year, 10 Months, 26 Days)</p>
                             </div>
                             <div class="bg-slate-50 p-4 rounded-lg">
@@ -647,6 +606,60 @@
                     }
                 }
             });
+            
+            // === Chart.js Radar Chart configuration ===
+            const radarCtx = document.getElementById('skillsRadarChart').getContext('2d');
+            new Chart(radarCtx, {
+                type: 'radar',
+                data: {
+                    labels: ['Java', 'JavaScript', 'Golang', 'Rust', 'Spring Boot', 'React'],
+                    datasets: [{
+                        label: 'Proficiency',
+                        data: [90, 85, 80, 70, 90, 85], // Proficiency on a scale of 0-100
+                        backgroundColor: 'rgba(13, 148, 136, 0.2)',
+                        borderColor: 'rgba(13, 148, 136, 1)',
+                        pointBackgroundColor: 'rgba(13, 148, 136, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(13, 148, 136, 1)',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    scales: {
+                        r: {
+                            angleLines: {
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            },
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            },
+                            pointLabels: {
+                                font: {
+                                    size: 14,
+                                    weight: 'bold'
+                                },
+                                color: '#334155' // slate-700
+                            },
+                            ticks: {
+                                backdropColor: 'transparent',
+                                color: 'rgba(0,0,0,0.5)',
+                                stepSize: 20,
+                                beginAtZero: true,
+                                max: 100
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false // We can hide the legend as the chart is self-explanatory
+                        }
+                    }
+                }
+            });
+
 
             // Smooth scrolling for navigation links and active state
             navLinks.forEach(link => {
