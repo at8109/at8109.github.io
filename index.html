@@ -11,9 +11,9 @@
     <!-- Application Structure Plan: The website is structured as a single-page portfolio with a sticky navigation bar allowing users to jump between sections (Home, About, Skills, Experience, Projects, Certifications, Contact). The Experience section includes an interactive timeline chart for a high-level overview, with detailed job cards revealed via tabs or timeline clicks. The Projects section uses a grid layout for individual project cards. This structure provides a clear, logical flow for presenting professional information, enabling both quick scanning and deep dives into specific areas of interest, chosen to mirror common developer portfolio best practices for usability and comprehensive display of qualifications. -->
     <!-- Visualization & Content Choices: 
         Report Info: Overall professional summary, contact. -> Goal: Introduce and provide quick contact. -> Viz/Presentation Method: Hero section, About section, Contact section. -> Interaction: Navigation links, direct contact links. -> Justification: Standard portfolio elements for immediate impact and accessibility. -> Library/Method: HTML/CSS/Tailwind.
-        Report Info: Skills (languages, frameworks, tools). -> Goal: Showcase technical breadth. -> Viz/Presentation Method: Categorized lists. -> Interaction: None. -> Justification: Clear and concise presentation of technical capabilities. -> Library/Method: HTML/CSS/Tailwind.
+        Report Info: Skills (languages, frameworks, tools). -> Goal: Showcase technical breadth. -> Viz/Presentation Method: Categorized lists with visual proficiency indicators. -> Interaction: None. -> Justification: Clear and concise presentation of technical capabilities with an added visual dimension for quick understanding. -> Library/Method: HTML/CSS/Tailwind.
         Report Info: Employment history (dates, roles, companies). -> Goal: Show career progression. -> Viz/Presentation Method: Interactive horizontal bar chart (timeline) and detailed job cards. -> Interaction: Clicking timeline segments or tabs reveals specific job details. -> Justification: Provides both a visual overview and granular details, making career path easy to understand. -> Library/Method: Chart.js (Canvas) for timeline, HTML/CSS/Tailwind for job cards.
-        Report Info: Project descriptions. -> Goal: Detail technical accomplishments. -> Viz/Presentation Method: Project cards with descriptions. -> Interaction: None. -> Justification: Highlights specific achievements and technical contributions in a readable format. -> Library/Method: HTML/CSS/Tailwind.
+        Report Info: Project descriptions. -> Goal: Detail technical accomplishments. -> Viz/Presentation Method: Enhanced project cards with descriptions and subtle hover effects. -> Interaction: Hover effects. -> Justification: Highlights specific achievements and technical contributions in a readable and engaging format. -> Library/Method: HTML/CSS/Tailwind.
         Report Info: Certifications and coding profiles. -> Goal: Validate expertise and provide external links. -> Viz/Presentation Method: Lists with hyperlinks. -> Interaction: Clickable links. -> Justification: Offers verifiable credentials and further exploration of coding work. -> Library/Method: HTML/CSS/Tailwind.
     -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
@@ -50,6 +50,23 @@
             color: #0d9488;
             font-weight: 600;
         }
+        .animate-fade-in {
+            animation: fadeIn 1s ease-out forwards;
+            opacity: 0;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Typing effect for Hero section */
+        .typing-text::after {
+            content: '|';
+            animation: blink-caret .75s step-end infinite;
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: currentColor; }
+        }
     </style>
 </head>
 <body class="bg-stone-50 text-slate-800">
@@ -72,14 +89,15 @@
         <!-- Hero Section -->
         <section id="hero" class="min-h-screen flex items-center justify-center text-center bg-gradient-to-br from-teal-50 to-stone-100 rounded-xl shadow-lg mb-12">
             <div class="max-w-3xl px-4 py-16">
+                <img src="http://googleusercontent.com/file_content/2" alt="Abhay Tiwari Profile" class="rounded-full mx-auto mb-6 shadow-md w-40 h-40 object-cover">
                 <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 leading-tight mb-4">
                     Abhay Tiwari
                 </h1>
-                <p class="text-xl md:text-2xl text-slate-700 mb-6">
-                    Senior Software Engineer with 7+ years of experience building scalable backend systems and intuitive frontends.
+                <p class="text-xl md:text-2xl text-slate-700 mb-6 typing-text">
+                    Senior Software Engineer
                 </p>
                 <p class="text-lg text-slate-600">
-                    Proficient in Java, Golang, Rust, Spring Boot, and React, with strong expertise in microservices, data pipelines, and cloud-native deployments. Skilled in applying design patterns and SOLID principles to deliver high-performance, production-ready solutions.
+                    With 7+ years of experience building scalable backend systems and intuitive frontends. Proficient in Java, Golang, Rust, Spring Boot, and React, with strong expertise in microservices, data pipelines, and cloud-native deployments. Skilled in applying design patterns and SOLID principles to deliver high-performance, production-ready solutions.
                 </p>
                 <div class="mt-8 space-x-4">
                     <a href="#contact" class="inline-block bg-teal-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-teal-700 transition-colors duration-300">Get in Touch</a>
@@ -89,7 +107,7 @@
         </section>
 
         <!-- About Me Section -->
-        <section id="about" class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 mb-12">
+        <section id="about" class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 mb-12 animate-fade-in">
             <h2 class="text-3xl font-bold text-slate-900 mb-6 text-center">About Me</h2>
             <div class="prose max-w-none text-slate-700">
                 <p>
@@ -108,22 +126,43 @@
         </section>
 
         <!-- Skills Section -->
-        <section id="skills" class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 mb-12">
+        <section id="skills" class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 mb-12 animate-fade-in">
             <h2 class="text-3xl font-bold text-slate-900 mb-6 text-center">Skills</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Programming Languages -->
                 <div>
                     <h3 class="text-xl font-semibold text-slate-800 mb-3">Programming Languages</h3>
-                    <ul class="list-disc list-inside space-y-2 text-slate-700">
-                        <li>Java</li>
-                        <li>JavaScript</li>
-                        <li>Golang</li>
-                        <li>Rust</li>
+                    <ul class="space-y-3">
+                        <li class="flex items-center">
+                            <span class="w-24 font-medium text-slate-700">Java</span>
+                            <div class="flex-1 bg-gray-200 rounded-full h-2.5">
+                                <div class="bg-teal-600 h-2.5 rounded-full" style="width: 90%;"></div>
+                            </div>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="w-24 font-medium text-slate-700">JavaScript</span>
+                            <div class="flex-1 bg-gray-200 rounded-full h-2.5">
+                                <div class="bg-teal-600 h-2.5 rounded-full" style="width: 85%;"></div>
+                            </div>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="w-24 font-medium text-slate-700">Golang</span>
+                            <div class="flex-1 bg-gray-200 rounded-full h-2.5">
+                                <div class="bg-teal-600 h-2.5 rounded-full" style="width: 80%;"></div>
+                            </div>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="w-24 font-medium text-slate-700">Rust</span>
+                            <div class="flex-1 bg-gray-200 rounded-full h-2.5">
+                                <div class="bg-teal-600 h-2.5 rounded-full" style="width: 70%;"></div>
+                            </div>
+                        </li>
                     </ul>
                 </div>
+                <!-- Web Technologies -->
                 <div>
                     <h3 class="text-xl font-semibold text-slate-800 mb-3">Web Technologies</h3>
-                    <ul class="list-disc list-inside space-y-2 text-slate-700">
-                        <li>JavaScript</li>
+                    <ul class="space-y-2 text-slate-700">
                         <li>React</li>
                         <li>HTML</li>
                         <li>CSS</li>
@@ -132,18 +171,20 @@
                         <li>gRPC</li>
                     </ul>
                 </div>
+                <!-- Frameworks -->
                 <div>
                     <h3 class="text-xl font-semibold text-slate-800 mb-3">Frameworks</h3>
-                    <ul class="list-disc list-inside space-y-2 text-slate-700">
+                    <ul class="space-y-2 text-slate-700">
                         <li>Spring Boot</li>
                         <li>Hibernate</li>
                         <li>Spring Data JPA</li>
                         <li>Spring Cloud</li>
                     </ul>
                 </div>
+                <!-- Databases -->
                 <div>
                     <h3 class="text-xl font-semibold text-slate-800 mb-3">Databases</h3>
-                    <ul class="list-disc list-inside space-y-2 text-slate-700">
+                    <ul class="space-y-2 text-slate-700">
                         <li>MYSQL</li>
                         <li>PostgreSQL</li>
                         <li>MongoDB</li>
@@ -153,14 +194,14 @@
                 </div>
                 <div>
                     <h3 class="text-xl font-semibold text-slate-800 mb-3">Cloud Technologies</h3>
-                    <ul class="list-disc list-inside space-y-2 text-slate-700">
+                    <ul class="space-y-2 text-slate-700">
                         <li>OpenShift Cloud Platform</li>
                         <li>AWS - S3, EC2, Dynamo DB, Firebase</li>
                     </ul>
                 </div>
                 <div>
                     <h3 class="text-xl font-semibold text-slate-800 mb-3">DevOps & Version Control</h3>
-                    <ul class="list-disc list-inside space-y-2 text-slate-700">
+                    <ul class="space-y-2 text-slate-700">
                         <li>Kubernetes</li>
                         <li>Docker</li>
                         <li>Helm</li>
@@ -188,8 +229,8 @@
             </div>
         </section>
 
-        <!-- Experience Section (reusing previous content) -->
-        <section id="experience" class="mb-12">
+        <!-- Experience Section -->
+        <section id="experience" class="mb-12 animate-fade-in">
             <h2 class="text-3xl font-bold text-slate-900 mb-6 text-center">Professional Experience</h2>
             <div class="bg-white p-4 sm:p-6 rounded-xl shadow-sm border border-slate-200 mb-8">
                 <h3 class="text-xl font-bold text-center mb-4 text-slate-700">Career Timeline Overview</h3>
@@ -208,7 +249,7 @@
 
             <div id="content" class="space-y-6">
                 <section id="cognizant" class="content-section hidden">
-                    <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 animate-fade-in">
+                    <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200">
                         <div class="flex flex-col md:flex-row justify-between md:items-center border-b border-slate-200 pb-4 mb-6">
                             <div>
                                 <h3 class="text-2xl font-bold text-teal-700">Cognizant Technology Solutions</h3>
@@ -243,7 +284,7 @@
                 </section>
 
                 <section id="flexton2" class="content-section hidden">
-                     <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 animate-fade-in">
+                     <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200">
                         <div class="flex flex-col md:flex-row justify-between md:items-center border-b border-slate-200 pb-4 mb-6">
                             <div>
                                 <h3 class="text-2xl font-bold text-teal-700">Flexton Inc.</h3>
@@ -283,7 +324,7 @@
                 </section>
 
                 <section id="amdocs" class="content-section hidden">
-                    <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 animate-fade-in">
+                    <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200">
                         <div class="flex flex-col md:flex-row justify-between md:items-center border-b border-slate-200 pb-4 mb-6">
                             <div>
                                 <h3 class="text-2xl font-bold text-teal-700">Amdocs Inc.</h3>
@@ -323,7 +364,7 @@
                 </section>
 
                 <section id="flexton1" class="content-section hidden">
-                     <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 animate-fade-in">
+                     <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200">
                         <div class="flex flex-col md:flex-row justify-between md:items-center border-b border-slate-200 pb-4 mb-6">
                             <div>
                                 <h3 class="text-2xl font-bold text-teal-700">Flexton Inc.</h3>
@@ -355,15 +396,15 @@
                             </div>
                             <div class="bg-slate-50 p-4 rounded-lg">
                                 <h4 class="font-semibold text-slate-500 text-sm mb-1">Final Salary</h4>
-                                <p class="text-slate-800 font-medium">₹65,834</p>
-                                <p class="text-slate-500 text-sm">(Gross Monthly including bonus, May 2021)</p>
+                                <p class="text-slate-800 font-medium">₹64,226</p>
+                                <p class="text-slate-500 text-sm">(Net Pay, May 2021)</p>
                             </div>
                         </div>
                     </div>
                 </section>
 
                 <section id="references" class="content-section hidden">
-                    <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 animate-fade-in">
+                    <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200">
                         <h3 class="text-2xl font-bold text-teal-700 border-b border-slate-200 pb-4 mb-6">Professional References</h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             <div>
@@ -401,12 +442,12 @@
         </section>
 
         <!-- Projects Section -->
-        <section id="projects" class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 mb-12">
+        <section id="projects" class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 mb-12 animate-fade-in">
             <h2 class="text-3xl font-bold text-slate-900 mb-6 text-center">Projects & Key Contributions</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- Project 1: American Express Backend Solution -->
-                <div class="bg-slate-50 p-6 rounded-lg shadow-sm">
-                    <h3 class="text-xl font-bold text-teal-700 mb-3">Scalable Backend Solution (American Express)</h3>
+                <div class="bg-slate-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+                    <h3 class="text-xl font-bold text-teal-700 mb-3">🚀 Scalable Backend Solution (American Express)</h3>
                     <ul class="list-disc list-inside space-y-2 text-slate-700">
                         <li>Architected and developed a scalable backend solution to extract and transform high-volume transaction data (~200 M+ records) across ~2M customers, producing four structured output files to support downstream processing and external vendor integration.</li>
                         <li>Designed and implemented an end-to-end Golang-based data pipeline that continuously polls reconciliation data, processes it in parallel using goroutines, ants pool, and waitgroups, and generates both customer-level summaries and supplementary-level transactional records.</li>
@@ -416,24 +457,24 @@
                 </div>
 
                 <!-- Project 2: Attendance Management System (Flexton Inc.) -->
-                <div class="bg-slate-50 p-6 rounded-lg shadow-sm">
-                    <h3 class="text-xl font-bold text-teal-700 mb-3">Attendance Management System (Flexton Inc.)</h3>
+                <div class="bg-slate-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+                    <h3 class="text-xl font-bold text-teal-700 mb-3">⏰ Attendance Management System (Flexton Inc.)</h3>
                     <ul class="list-disc list-inside space-y-2 text-slate-700">
                         <li>Built an Attendance Management System for ~80 employees using Golang, MongoDB, and AWS Kubernetes Service, with REST APIs for login/signup, attendance retrieval, creation, and a React-based frontend.</li>
                     </ul>
                 </div>
 
                 <!-- Project 3: Candidate Feedback Database (Flexton Inc.) -->
-                <div class="bg-slate-50 p-6 rounded-lg shadow-sm">
-                    <h3 class="text-xl font-bold text-teal-700 mb-3">Candidate Feedback Database (Flexton Inc.)</h3>
+                <div class="bg-slate-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+                    <h3 class="text-xl font-bold text-teal-700 mb-3">💬 Candidate Feedback Database (Flexton Inc.)</h3>
                     <ul class="list-disc list-inside space-y-2 text-slate-700">
                         <li>Designed a Candidate Feedback Database using Rust, Tokio, and Axum, implementing APIs for feedback record management and integrating the backend with a React-based UI. Deployed the complete solution on AWS.</li>
                     </ul>
                 </div>
 
                 <!-- Project 4: Amdocs Microservices & BPM Workflows -->
-                <div class="bg-slate-50 p-6 rounded-lg shadow-sm">
-                    <h3 class="text-xl font-bold text-teal-700 mb-3">Microservices & BPM Workflows (Amdocs Inc.)</h3>
+                <div class="bg-slate-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+                    <h3 class="text-xl font-bold text-teal-700 mb-3">⚙️ Microservices & BPM Workflows (Amdocs Inc.)</h3>
                     <ul class="list-disc list-inside space-y-2 text-slate-700">
                         <li>Developed and enhanced REST APIs and Activiti BPM workflows in a microservices architecture using Java 8, Spring Boot, React JS, Kafka, and SQL.</li>
                         <li>Customized features such as product cloning, proposal management, multithreading for BPMN flows, and role-based API authorization and performed unit and integration testing to ensure code quality and reliability.</li>
@@ -442,8 +483,8 @@
                 </div>
 
                  <!-- Project 5: Technical Screener/Trainer (Flexton Inc.) -->
-                <div class="bg-slate-50 p-6 rounded-lg shadow-sm">
-                    <h3 class="text-xl font-bold text-teal-700 mb-3">Technical Screener/Trainer (Flexton Inc.)</h3>
+                <div class="bg-slate-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+                    <h3 class="text-xl font-bold text-teal-700 mb-3">🎓 Technical Screener/Trainer (Flexton Inc.)</h3>
                     <ul class="list-disc list-inside space-y-2 text-slate-700">
                         <li>Promoted as Technical Screener/Trainer specializing in Java, JavaScript, React, Spring Boot, REST APIs, and Data Structures & Algorithms.</li>
                     </ul>
@@ -452,7 +493,7 @@
         </section>
 
         <!-- Certifications and Links Section -->
-        <section id="certifications" class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 mb-12">
+        <section id="certifications" class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 mb-12 animate-fade-in">
             <h2 class="text-3xl font-bold text-slate-900 mb-6 text-center">Certifications & Coding Profiles</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
@@ -476,7 +517,7 @@
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 mb-12 text-center">
+        <section id="contact" class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200 mb-12 text-center animate-fade-in">
             <h2 class="text-3xl font-bold text-slate-900 mb-6">Get in Touch</h2>
             <p class="text-lg text-slate-700 mb-4">
                 Feel free to reach out for collaborations, job opportunities, or just to say hello!
@@ -638,6 +679,22 @@
             document.querySelectorAll('section[id]').forEach(section => {
                 observer.observe(section);
             });
+
+            // Typing effect for Hero section
+            const typingTextElement = document.querySelector('.typing-text');
+            const textToType = "Senior Software Engineer";
+            let charIndex = 0;
+
+            function typeText() {
+                if (charIndex < textToType.length) {
+                    typingTextElement.textContent = textToType.substring(0, charIndex + 1);
+                    charIndex++;
+                    setTimeout(typeText, 100); // Typing speed
+                } else {
+                    // Optional: loop or stop
+                }
+            }
+            typeText(); // Start typing animation
         });
     </script>
 </body>
